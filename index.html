@@ -1,0 +1,1618 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<!-- PWA -->
+<link rel="manifest" href="manifest.json">
+<meta name="theme-color" content="#1a0610">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="apple-mobile-web-app-title" content="¡Aprende!">
+<link rel="apple-touch-icon" href="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCA1MTIgNTEyIj4KICA8ZGVmcz4KICAgIDxsaW5lYXJHcmFkaWVudCBpZD0iYmciIHgxPSIwIiB5MT0iMCIgeDI9IjEiIHkyPSIxIj4KICAgICAgPHN0b3Agb2Zmc2V0PSIwJSIgc3RvcC1jb2xvcj0iIzFhMDYxMCIvPgogICAgICA8c3RvcCBvZmZzZXQ9IjEwMCUiIHN0b3AtY29sb3I9IiMwYTAyMDUiLz4KICAgIDwvbGluZWFyR3JhZGllbnQ+CiAgICA8bGluZWFyR3JhZGllbnQgaWQ9Imdsb3ciIHgxPSIwIiB5MT0iMCIgeDI9IjEiIHkyPSIxIj4KICAgICAgPHN0b3Agb2Zmc2V0PSIwJSIgc3RvcC1jb2xvcj0iI2ZmMTc0NCIvPgogICAgICA8c3RvcCBvZmZzZXQ9IjUwJSIgc3RvcC1jb2xvcj0iI2Q1MDBmOSIvPgogICAgICA8c3RvcCBvZmZzZXQ9IjEwMCUiIHN0b3AtY29sb3I9IiMwMGU1ZmYiLz4KICAgIDwvbGluZWFyR3JhZGllbnQ+CiAgPC9kZWZzPgogIDxyZWN0IHdpZHRoPSI1MTIiIGhlaWdodD0iNTEyIiByeD0iMTA4IiBmaWxsPSJ1cmwoI2JnKSIvPgogIDx0ZXh0IHg9IjI1NiIgeT0iMjAwIiB0ZXh0LWFuY2hvcj0ibWlkZGxlIiBmb250LWZhbWlseT0ic2Fucy1zZXJpZiIgZm9udC13ZWlnaHQ9IjkwMCIgZm9udC1zaXplPSIxMjAiIGZpbGw9InVybCgjZ2xvdykiPsKhQSE8L3RleHQ+CiAgPHRleHQgeD0iMjU2IiB5PSIzMjAiIHRleHQtYW5jaG9yPSJtaWRkbGUiIGZvbnQtZmFtaWx5PSJzYW5zLXNlcmlmIiBmb250LXdlaWdodD0iNzAwIiBmb250LXNpemU9IjU2IiBmaWxsPSIjZmZmNWUxIj5BcHJlbmRlPC90ZXh0PgogIDx0ZXh0IHg9IjI1NiIgeT0iMzkwIiB0ZXh0LWFuY2hvcj0ibWlkZGxlIiBmb250LWZhbWlseT0ic2Fucy1zZXJpZiIgZm9udC13ZWlnaHQ9IjQwMCIgZm9udC1zaXplPSIzNiIgZmlsbD0iI2MwODA5MCI+8J+HqvCfh7gg8J+HqPCfh6kg8J+HuvCfh7g8L3RleHQ+Cjwvc3ZnPg==">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="msapplication-TileColor" content="#1a0610">
+<meta name="description" content="Apprends l'espagnol, le lingala et l'anglais — exercices, SRS, RPG">
+
+<title>¡Aprende! — Langues Interactives</title>
+<link href="https://fonts.googleapis.com/css2?family=Nunito:wght@600;700;800;900&family=Unbounded:wght@400;700;900&family=DM+Sans:ital,wght@0,300;0,400;0,500;1,300&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<button id="desktop-toggle" onclick="toggleDesktopMode()" title="Basculer entre mode mobile et desktop">
+  <span id="desktop-toggle-icon">🖥️</span>
+  <span id="desktop-toggle-label">Desktop</span>
+</button>
+
+<!-- ═══════════ DESKTOP SIDEBAR (hidden on mobile) ═══════════ -->
+<aside id="desktop-sidebar">
+  <div class="ds-logo">
+    <div class="ds-logo-text">¡Aprende!</div>
+    <div class="ds-logo-sub">Vocab Multilingue</div>
+  </div>
+
+  <div class="ds-section">
+    <div class="ds-label">Langues</div>
+    <button class="ds-lang-btn" data-lang="es" onclick="selectLang('es')">
+      <span class="ds-lang-flag">🇪🇸</span>
+      <div class="ds-lang-text">
+        <div class="ds-lang-name">Espagnol</div>
+        <div class="ds-lang-sub">Castellano</div>
+      </div>
+      <span class="ds-lang-badge" id="ds-badge-es"></span>
+    </button>
+    <button class="ds-lang-btn" data-lang="ln" onclick="selectLang('ln')">
+      <span class="ds-lang-flag">🇨🇩</span>
+      <div class="ds-lang-text">
+        <div class="ds-lang-name">Lingala</div>
+        <div class="ds-lang-sub">RDC</div>
+      </div>
+      <span class="ds-lang-badge" id="ds-badge-ln"></span>
+    </button>
+    <button class="ds-lang-btn" data-lang="en" onclick="selectLang('en')">
+      <span class="ds-lang-flag">🇬🇧</span>
+      <div class="ds-lang-text">
+        <div class="ds-lang-name">Anglais</div>
+        <div class="ds-lang-sub">English</div>
+      </div>
+      <span class="ds-lang-badge" id="ds-badge-en"></span>
+    </button>
+    <button class="ds-lang-btn" data-lang="dz" onclick="selectLang('dz')">
+      <span class="ds-lang-flag">🇩🇿</span>
+      <div class="ds-lang-text">
+        <div class="ds-lang-name">Darija</div>
+        <div class="ds-lang-sub">دارجة جزائرية</div>
+      </div>
+      <span class="ds-lang-badge" id="ds-badge-dz"></span>
+    </button>
+  </div>
+
+  <div class="ds-section">
+    <div class="ds-label">Navigation</div>
+    <button class="ds-nav-btn" onclick="showScreen('lang-select')"><span>🏠</span><span>Accueil</span></button>
+    <button class="ds-nav-btn" onclick="openPath(currentLang||'es')"><span>🗺️</span><span>Parcours</span></button>
+    <button class="ds-nav-btn" onclick="tabGo('games')"><span>🎮</span><span>Jeux</span></button>
+    <button class="ds-nav-btn" onclick="openHero()"><span>⚔️</span><span>Héros</span></button>
+    <button class="ds-nav-btn" onclick="openShop()"><span>🏪</span><span>Boutique</span></button>
+    <button class="ds-nav-btn" onclick="openSRS(currentLang||'es')"><span>🧠</span><span>Révision SRS</span></button>
+    <button class="ds-nav-btn" onclick="openByDay(currentLang||'es')"><span>📆</span><span>Par jour</span></button>
+    <button class="ds-nav-btn" onclick="openShuffle(currentLang||'es')"><span>🔀</span><span>Session rapide</span></button>
+    <button class="ds-nav-btn" onclick="openJournal(currentLang||'es')"><span>📅</span><span>Journal</span></button>
+    <button class="ds-nav-btn" onclick="openStats(currentLang||'es')"><span>📊</span><span>Statistiques</span></button>
+    <button class="ds-nav-btn" onclick="openGrammarJournal()">
+      <span>📘</span><span>Grammaire</span>
+      <span id="ds-grammar-badge" style="margin-left:auto;background:linear-gradient(135deg,#a855f7,#ec4899);color:#fff;font-size:.62rem;font-weight:800;padding:.15rem .4rem;border-radius:999px;display:none"></span>
+    </button>
+  </div>
+
+  <div class="ds-spacer"></div>
+
+  <div class="ds-section ds-section-bottom">
+    <div class="ds-label">Sauvegarde</div>
+    <button class="ds-nav-btn" onclick="exportProgress()"><span>💾</span><span>Exporter</span></button>
+    <button class="ds-nav-btn" onclick="document.getElementById('import-file-input').click()"><span>📂</span><span>Importer</span></button>
+    <button class="ds-nav-btn" onclick="openNotifSettings()" id="btn-notif"><span>🔔</span><span>Notifications</span><span id="notif-status-dot" style="margin-left:auto;width:8px;height:8px;border-radius:50%;display:none"></span></button>
+    <button class="ds-nav-btn" onclick="toggleSfxBtn()" id="btn-sfx"><span>🔊</span><span>Sons</span><span id="sfx-status-dot" style="margin-left:auto;width:8px;height:8px;border-radius:50%;display:none"></span></button>
+  </div>
+
+  <div class="ds-footer">
+    <div style="font-size:.65rem;color:var(--muted);text-align:center;opacity:.6">¡Aprende! · v2026.10</div>
+  </div>
+</aside>
+<div id="confetti-layer"></div>
+
+<!-- TOAST -->
+<div class="toast" id="toast"></div>
+
+<!-- ═══════════ PARCOURS (style Duolingo) ═══════════ -->
+<div class="screen with-tabbar" id="screen-path">
+  <div class="pth-top">
+    <button onclick="showScreen('lang-select')" id="pth-flag" title="Changer de langue">🇪🇸</button>
+    <span class="st" title="Série">🔥 <span id="pth-streak">0</span></span>
+    <span class="st" title="Or">🪙 <span id="pth-gold">0</span></span>
+    <span class="st" title="Points de vie">❤️ <span id="pth-hp">50</span></span>
+    <span class="st" title="Niveau" onclick="openHero()" style="cursor:pointer">⭐ <span id="pth-lvl">1</span></span>
+  </div>
+  <div id="dg-widget"></div>
+  <div class="pth-chips" style="display:flex;gap:8px;padding:8px 16px;overflow-x:auto;flex-shrink:0">
+    <button onclick="openFCSwipe()" class="gbtn" style="font-size:.82rem;padding:6px 14px;border-radius:20px;background:var(--accent2);white-space:nowrap">🃏 Flashcards</button>
+    <button onclick="openBadges()" class="gbtn" style="font-size:.82rem;padding:6px 14px;border-radius:20px;background:#9b59b6;white-space:nowrap">🏅 Badges</button>
+    <button onclick="openStories()" class="gbtn" style="font-size:.82rem;padding:6px 14px;border-radius:20px;background:#e67e22;white-space:nowrap">📖 Stories</button>
+  </div>
+  <div class="pth-wrap" id="pth-body"></div>
+</div>
+
+<!-- ═══════════ LEÇON ═══════════ -->
+<div class="screen" id="screen-lesson">
+  <div class="ls-top">
+    <button class="ls-x" onclick="crsQuit()" title="Quitter">✕</button>
+    <div class="ls-bar"><i id="ls-fill"></i></div>
+    <div class="ls-hp">❤️ <span id="ls-hp">50</span></div>
+  </div>
+  <div class="ls-boss" id="ls-boss" style="display:none"><span id="ls-boss-name">👹 Boss</span><div class="rbar boss"><i id="ls-boss-fill" style="width:100%"></i></div></div>
+  <div class="ls-body" id="ls-body"></div>
+  <div class="ls-foot" id="ls-foot">
+    <div class="ls-fb" id="ls-fb"></div>
+    <button class="gbtn" id="ls-btn" onclick="crsAction()">Vérifier</button>
+  </div>
+</div>
+
+<!-- ═══════════ HÉROS (style Habitica) ═══════════ -->
+<div class="screen with-tabbar" id="screen-hero">
+  <div class="pg-h" id="hero-body"></div>
+</div>
+
+<!-- ═══════════ BOUTIQUE ═══════════ -->
+<div class="screen with-tabbar" id="screen-shop">
+  <div class="pg-h" id="shop-body"></div>
+</div>
+
+<!-- Barre d'onglets -->
+<nav id="crs-tabbar">
+  <button class="tb-btn" data-tab="path" onclick="tabGo('path')"><span>🗺️</span>Parcours</button>
+  <button class="tb-btn" data-tab="srs" onclick="tabGo('srs')"><span>🧠</span>Réviser</button>
+  <button class="tb-btn" data-tab="games" onclick="tabGo('games')"><span>🎮</span>Jeux</button>
+  <button class="tb-btn" data-tab="hero" onclick="tabGo('hero')"><span>⚔️</span>Héros</button>
+  <button class="tb-btn" data-tab="shop" onclick="tabGo('shop')"><span>🏪</span>Boutique</button>
+  <button class="tb-btn" data-tab="settings" onclick="openSettingsModal()"><span>⚙️</span>Réglages</button>
+</nav>
+<div id="crs-modal" onclick="if(event.target===this)crsCloseModal()"><div class="cm-box" id="crs-modal-box"></div></div>
+
+<!-- ═══════════ LANGUE SELECTOR ═══════════ -->
+<div class="screen active" id="lang-select">
+  <div class="hub">
+    <div class="hub-logo">¡Aprende!</div>
+    <div class="hub-tag">Espagnol B2 · Lingala B2 · Anglais C1/natif · Darija B2</div>
+    <div class="hub-hero" onclick="openHero()" id="hub-hero"></div>
+    <div class="hub-chips" id="hub-chips"></div>
+    <div id="hub-streak-danger"></div>
+    <div id="dg-widget" style="width:100%"></div>
+    <div class="hub-card es" onclick="selectLang('es')">
+      <div class="hc-row"><span class="hc-flag">🇪🇸</span><div><div class="hc-name">Espagnol <span class="srs-due-badge" id="srs-due-es" style="display:none;background:#fff;color:#c85a00;font-size:.62rem;font-weight:900;padding:.2rem .5rem;border-radius:999px">🧠 <span data-count>0</span></span></div><div class="hc-sub" id="hc-sub-es"></div><div class="lang-count" id="lang-count-es"></div></div><span class="hc-go">Continuer ▶</span></div>
+      <div class="hc-prog"><div class="hc-bar"><i id="hc-bar-es"></i></div><div class="hc-meta"><span id="hc-unit-es"></span><span>Objectif B2</span></div></div>
+    </div>
+    <div class="hub-card ln" onclick="selectLang('ln')">
+      <div class="hc-row"><span class="hc-flag">🇨🇩</span><div><div class="hc-name">Lingala <span class="srs-due-badge" id="srs-due-ln" style="display:none;background:#fff;color:#1287c9;font-size:.62rem;font-weight:900;padding:.2rem .5rem;border-radius:999px">🧠 <span data-count>0</span></span></div><div class="hc-sub" id="hc-sub-ln"></div><div class="lang-count" id="lang-count-ln"></div></div><span class="hc-go">Continuer ▶</span></div>
+      <div class="hc-prog"><div class="hc-bar"><i id="hc-bar-ln"></i></div><div class="hc-meta"><span id="hc-unit-ln"></span><span>Objectif B2</span></div></div>
+    </div>
+    <div class="hub-card en" onclick="selectLang('en')">
+      <div class="hc-row"><span class="hc-flag">🇺🇸</span><div><div class="hc-name">Anglais <span class="srs-due-badge" id="srs-due-en" style="display:none;background:#fff;color:#b22234;font-size:.62rem;font-weight:900;padding:.2rem .5rem;border-radius:999px">🧠 <span data-count>0</span></span></div><div class="hc-sub" id="hc-sub-en"></div><div class="lang-count" id="lang-count-en"></div></div><span class="hc-go">Continuer ▶</span></div>
+      <div class="hc-prog"><div class="hc-bar"><i id="hc-bar-en"></i></div><div class="hc-meta"><span id="hc-unit-en"></span><span>Objectif C1 / natif</span></div></div>
+    </div>
+    <div class="hub-card dz" onclick="selectLang('dz')" style="background:linear-gradient(135deg,rgba(0,166,81,.12),rgba(210,16,52,.12));border-color:rgba(0,166,81,.3)">
+      <div class="hc-row"><span class="hc-flag">🇩🇿</span><div><div class="hc-name">Darija <span class="srs-due-badge" id="srs-due-dz" style="display:none;background:#fff;color:#00a651;font-size:.62rem;font-weight:900;padding:.2rem .5rem;border-radius:999px">🧠 <span data-count>0</span></span></div><div class="hc-sub" id="hc-sub-dz"></div><div class="lang-count" id="lang-count-dz"></div></div><span class="hc-go">Continuer ▶</span></div>
+      <div class="hc-prog"><div class="hc-bar"><i id="hc-bar-dz"></i></div><div class="hc-meta"><span id="hc-unit-dz"></span><span>Objectif B2</span></div></div>
+    </div>
+    <div class="hub-dailies" id="hub-dailies"></div>
+  </div>
+
+  <!-- Backup / Restore section -->
+  <div style="margin-top:2.5rem;max-width:520px;width:100%">
+    <div style="text-align:center;font-size:.65rem;color:var(--muted);letter-spacing:.2em;text-transform:uppercase;margin-bottom:1rem">
+      <span style="display:inline-block;width:20px;height:1px;background:linear-gradient(90deg,transparent,var(--neon-purple));vertical-align:middle;margin:0 .6rem"></span>
+      Sauvegarde
+      <span style="display:inline-block;width:20px;height:1px;background:linear-gradient(90deg,var(--neon-purple),transparent);vertical-align:middle;margin:0 .6rem"></span>
+    </div>
+    <div style="display:flex;gap:.6rem;flex-wrap:wrap;justify-content:center">
+      <button onclick="exportProgress()" style="background:linear-gradient(135deg,var(--neon-purple),var(--accent));border:none;color:#fff;padding:.7rem 1.2rem;border-radius:12px;font-family:'Unbounded',sans-serif;font-size:.78rem;font-weight:700;cursor:pointer;box-shadow:0 4px 14px rgba(213,0,249,.35);display:flex;align-items:center;gap:.4rem">
+        💾 <span>Exporter mes progrès</span>
+      </button>
+      <button onclick="document.getElementById('import-file-input').click()" style="background:rgba(255,255,255,.04);border:1.5px solid rgba(255,255,255,.15);color:var(--text);padding:.7rem 1.2rem;border-radius:12px;font-family:'Unbounded',sans-serif;font-size:.78rem;font-weight:700;cursor:pointer;display:flex;align-items:center;gap:.4rem">
+        📂 <span>Importer</span>
+      </button>
+      <input type="file" id="import-file-input" accept=".json,application/json" style="display:none" onchange="importProgress(this.files[0])">
+    </div>
+    <div id="backup-hint" style="text-align:center;font-size:.7rem;color:var(--muted);margin-top:.7rem;line-height:1.5;opacity:.75">
+      Sauvegarde ton SRS + XP avant de générer une nouvelle version
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════ HOME ═══════════ -->
+<div class="screen" id="home">
+  <div class="home-title">¡Aprende!</div>
+  <div class="home-sub" id="home-sub-es">Espagnol → Français</div>
+  <div class="stats-bar">
+    <div class="stat"><div class="stat-val" id="stat-score">0</div><div class="stat-lbl">XP</div></div>
+    <div class="stat"><div class="stat-val" id="stat-streak">0</div><div class="stat-lbl">Série 🔥</div></div>
+    <div class="stat"><div class="stat-val" id="stat-mastered">0</div><div class="stat-lbl">Maîtrisés</div></div>
+  </div>
+  <div class="games-grid">
+    <div class="game-card" style="--card-color:#ffd60a;--card-glow:radial-gradient(circle at 50% 0%,#ffd60a,transparent 70%)" onclick="startGame('flashcard')">
+      <span class="card-icon">🃏</span>
+      <div class="card-title">Flashcards</div>
+      <div class="card-desc">Parcours tes cartes en mode révision. Révèle la traduction et auto-évalue ta réponse.</div>
+      <span class="card-badge">Révision libre</span>
+    </div>
+    <div class="game-card" style="--card-color:#ff4d6d;--card-glow:radial-gradient(circle at 50% 0%,#ff4d6d,transparent 70%)" onclick="startGame('qcm')">
+      <span class="card-icon">🎯</span>
+      <div class="card-title">QCM Rapide</div>
+      <div class="card-desc">4 choix, 1 bonne réponse. Teste ta mémoire sur le vocabulaire avec feedback immédiat.</div>
+      <span class="card-badge">Score & Combo</span>
+    </div>
+    <div class="game-card" style="--card-color:#00f5d4;--card-glow:radial-gradient(circle at 50% 0%,#00f5d4,transparent 70%)" onclick="startGame('typing')">
+      <span class="card-icon">⌨️</span>
+      <div class="card-title">Frappe le mot</div>
+      <div class="card-desc">Vois le mot en français, écris-le en espagnol. Pas de choix, pure mémoire.</div>
+      <span class="card-badge">Mémoire active</span>
+    </div>
+    <div class="game-card" style="--card-color:#ff9f1c;--card-glow:radial-gradient(circle at 50% 0%,#ff9f1c,transparent 70%)" onclick="startGame('speed')">
+      <span class="card-icon">⚡</span>
+      <div class="card-title">Mode Vitesse</div>
+      <div class="card-desc">15 secondes par mot. Le chrono tourne, réponds avant qu'il expire !</div>
+      <span class="card-badge">Pression & Adrénaline</span>
+    </div>
+    <div class="game-card" style="--card-color:#4cc9f0;--card-glow:radial-gradient(circle at 50% 0%,#4cc9f0,transparent 70%)" onclick="startGame('survival')">
+      <span class="card-icon">❤️</span>
+      <div class="card-title">Mode Survie</div>
+      <div class="card-desc">3 vies. Chaque erreur coûte une vie. Combien de mots peux-tu enchaîner ?</div>
+      <span class="card-badge">Jusqu'à la mort</span>
+    </div>
+  </div>
+
+  <!-- ── Section hors IA ── -->
+  <div style="width:100%;max-width:960px;margin-top:2.5rem">
+    <div style="font-size:.7rem;letter-spacing:.18em;text-transform:uppercase;color:var(--muted);margin-bottom:1rem;text-align:center;display:flex;align-items:center;gap:.8rem;justify-content:center">
+      <span style="flex:1;height:1px;background:var(--border)"></span>
+      Conjugaison & Grammaire
+      <span style="flex:1;height:1px;background:var(--border)"></span>
+    </div>
+    <div class="games-grid">
+      <div class="game-card" style="--card-color:#ff6b35;--card-glow:radial-gradient(circle at 50% 0%,#ff6b35,transparent 70%);grid-column:1/-1" onclick="startGame('conjtrainer')">
+        <span class="card-icon">🏋️</span>
+        <div class="card-title">Entraîneur Conjugaison</div>
+        <div class="card-desc">Parcours progressif par temps : présent → subjonctif. QCM, phrases à trous, tableaux complets. Gagne des étoiles et de l'XP !</div>
+        <span class="card-badge">Hors ligne · 6 temps · Progression</span>
+      </div>
+      <div class="game-card" style="--card-color:#e879f9;--card-glow:radial-gradient(circle at 50% 0%,#e879f9,transparent 70%)" onclick="startGame('conjqcm')">
+        <span class="card-icon">📋</span>
+        <div class="card-title">QCM Conjugaison</div>
+        <div class="card-desc">Un verbe, un pronom, un temps : trouve la bonne forme parmi 4 options. Couvre présent, prétérit, imparfait, futur, conditionnel et subjonctif sur 30 verbes courants + tes verbes du deck.</div>
+        <span class="card-badge">Hors ligne · 6 temps</span>
+      </div>
+      <div class="game-card" style="--card-color:#fb923c;--card-glow:radial-gradient(circle at 50% 0%,#fb923c,transparent 70%)" onclick="startGame('conjfill')">
+        <span class="card-icon">✍️</span>
+        <div class="card-title">Tableau à compléter</div>
+        <div class="card-desc">Un verbe, un temps : complète les 6 formes du tableau (yo/tú/él/nosotros/vosotros/ellos). Correction immédiate, formes irrégulières incluses.</div>
+        <span class="card-badge">Hors ligne · Tableau complet</span>
+      </div>
+      <div class="game-card" style="--card-color:#34d399;--card-glow:radial-gradient(circle at 50% 0%,#34d399,transparent 70%);grid-column:1/-1" onclick="startGame('lecons')">
+        <span class="card-icon">📖</span>
+        <div class="card-title">Leçons & Exercices — Subjonctif · Gérondif</div>
+        <div class="card-desc">Cours complets avec règles, exemples tirés de tes mots du deck, et exercices à trous interactifs. Subjonctif présent (formation, usages, expressions), Gérondif (formation, être en train de, usages avancés).</div>
+        <span class="card-badge">Hors ligne · Cours + Exos</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- ── Section mémoire visuelle ── -->
+  <div style="width:100%;max-width:960px;margin-top:2.5rem">
+    <div style="font-size:.7rem;letter-spacing:.18em;text-transform:uppercase;color:var(--muted);margin-bottom:1rem;text-align:center;display:flex;align-items:center;gap:.8rem;justify-content:center">
+      <span style="flex:1;height:1px;background:var(--border)"></span>
+      🎨 Mémoire visuelle & Synesthésie
+      <span style="flex:1;height:1px;background:var(--border)"></span>
+    </div>
+    <div class="games-grid">
+      <div class="game-card" style="--card-color:#f472b6;--card-glow:radial-gradient(circle at 50% 0%,#f472b6,transparent 70%)" onclick="startGame('palette')">
+        <span class="card-icon">🎨</span>
+        <div class="card-title">Palette Synesthésique</div>
+        <div class="card-desc">Chaque mot est associé à une couleur selon sa sonorité. Retrouve le mot depuis sa couleur ou associe ta propre teinte. Exploite ta synesthésie.</div>
+        <span class="card-badge">Couleurs · Mémoire visuelle</span>
+      </div>
+      <div class="game-card" style="--card-color:#818cf8;--card-glow:radial-gradient(circle at 50% 0%,#818cf8,transparent 70%)" onclick="startGame('mindmap')">
+        <span class="card-icon">🧠</span>
+        <div class="card-title">Mind Map</div>
+        <div class="card-desc">Les mots s'affichent en réseau visuel coloré, groupés par thème. Clique sur un nœud pour voir la traduction et les liens avec d'autres mots.</div>
+        <span class="card-badge">Réseau · Navigation visuelle</span>
+      </div>
+      <div class="game-card" style="--card-color:#fbbf24;--card-glow:radial-gradient(circle at 50% 0%,#fbbf24,transparent 70%)" onclick="startGame('colorletters')">
+        <span class="card-icon">🌈</span>
+        <div class="card-title">Lettres Colorées</div>
+        <div class="card-desc">Chaque lettre de l'alphabet a une couleur fixe. Les mots s'affichent lettre par lettre en couleur — ton cerveau synesthésique crée une empreinte unique par mot.</div>
+        <span class="card-badge">Alphabet · Synesthésie graphème-couleur</span>
+      </div>
+      <div class="game-card" style="--card-color:#f0abfc;--card-glow:radial-gradient(circle at 50% 0%,#f0abfc,transparent 70%)" onclick="startGame('aura')">
+        <span class="card-icon">✨</span>
+        <div class="card-title">Aura Personnalisée</div>
+        <div class="card-desc">Tu choisis TOI-MÊME la couleur de chaque mot. Tes associations sont sauvegardées. Le quiz est basé sur TES couleurs, pas celles d'un algorithme.</div>
+        <span class="card-badge">Tes couleurs · Sauvegardé</span>
+      </div>
+      <div class="game-card" style="--card-color:#67e8f9;--card-glow:radial-gradient(circle at 50% 0%,#67e8f9,transparent 70%)" onclick="startGame('calendrier')">
+        <span class="card-icon">🗓️</span>
+        <div class="card-title">Calendrier des Mots</div>
+        <div class="card-desc">Tes mots s'affichent dans un espace mensuel comme ton calendrier mental. Chaque session occupe sa case. Révise en naviguant visuellement dans le temps.</div>
+        <span class="card-badge">Espace-temps · Calendrier mental</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- ── Jeux Tap — sans clavier ── -->
+  <div style="width:100%;max-width:960px;margin-top:2.5rem">
+    <div style="font-size:.7rem;letter-spacing:.18em;text-transform:uppercase;color:var(--muted);margin-bottom:1rem;text-align:center;display:flex;align-items:center;gap:.8rem;justify-content:center">
+      <span style="flex:1;height:1px;background:var(--border)"></span>
+      ⚡ Tap uniquement — zéro clavier
+      <span style="flex:1;height:1px;background:var(--border)"></span>
+    </div>
+    <div class="games-grid">
+      <div class="game-card" style="--card-color:#4ade80;--card-glow:radial-gradient(circle at 50% 0%,#4ade80,transparent 70%)" onclick="startGame('wordle')">
+        <span class="card-icon">🟩</span>
+        <div class="card-title">Wordle Espagnol</div>
+        <div class="card-desc">Devine le mot en 6 essais. Clique sur le clavier visuel — vert = bonne place, jaune = mauvaise place, gris = absente. Sur tes mots du deck uniquement.</div>
+        <span class="card-badge">Hors ligne · Tap · ~3 min</span>
+      </div>
+      <div class="game-card" style="--card-color:#fb923c;--card-glow:radial-gradient(circle at 50% 0%,#fb923c,transparent 70%)" onclick="startGame('anagramme')">
+        <span class="card-icon">🔀</span>
+        <div class="card-title">Anagramme Tap</div>
+        <div class="card-desc">Lettres mélangées affichées comme des tuiles. Tape dans l'ordre en cliquant. Chrono + combo si rapide. Zéro frappe clavier.</div>
+        <span class="card-badge">Hors ligne · Tap · Chrono</span>
+      </div>
+      <div class="game-card" style="--card-color:#a78bfa;--card-glow:radial-gradient(circle at 50% 0%,#a78bfa,transparent 70%)" onclick="startGame('quisuisje')">
+        <span class="card-icon">🕵️</span>
+        <div class="card-title">Qui suis-je ?</div>
+        <div class="card-desc">4 indices progressifs sur un mot : catégorie → longueur → lettre → définition. Plus tu devines tôt, plus tu gagnes. 4 choix, tap direct.</div>
+        <span class="card-badge">Hors ligne · Tap · Logique</span>
+      </div>
+      <div class="game-card" style="--card-color:#f43f5e;--card-glow:radial-gradient(circle at 50% 0%,#f43f5e,transparent 70%)" onclick="startGame('blitz')">
+        <span class="card-icon">⚡</span>
+        <div class="card-title">Blitz Tap</div>
+        <div class="card-desc">20 mots en 60 secondes. Un mot espagnol, 2 traductions côte à côte. Tape la bonne. Pur réflexe, aucune frappe.</div>
+        <span class="card-badge">Hors ligne · Réflexe · 60s</span>
+      </div>
+      <div class="game-card" style="--card-color:#38bdf8;--card-glow:radial-gradient(circle at 50% 0%,#38bdf8,transparent 70%)" onclick="startGame('chaine')">
+        <span class="card-icon">🔗</span>
+        <div class="card-title">Chaîne de Mots</div>
+        <div class="card-desc">Un mot s'affiche, tu choisis le suivant dont la traduction commence par la dernière lettre. Construis la plus longue chaîne possible.</div>
+        <span class="card-badge">Hors ligne · Tap · Connexion logique</span>
+      </div>
+    </div>
+  </div>
+  <div style="margin-top:2rem;display:flex;gap:.8rem;flex-wrap:wrap;justify-content:center">
+    <button class="btn btn-ghost" onclick="showScreen('lang-select')">🌍 Changer de langue</button>
+    <button class="btn btn-ghost" onclick="openJournal('es')">📅 Journal des mots</button>
+    <button class="btn btn-ghost" onclick="openStats('es')">📊 Stats</button>
+    <button class="btn btn-ghost" onclick="openGrammarJournal()" style="background:linear-gradient(135deg,rgba(168,85,247,.15),rgba(236,72,153,.15));border-color:rgba(168,85,247,.4);color:#e9d5ff">📘 Grammaire</button>
+    <button class="btn btn-primary" onclick="openByDay('es')" style="background:linear-gradient(135deg,#ffd60a,#fb923c)">📆 Par jour</button>
+    <button class="btn btn-primary" onclick="openSRS('es')" style="background:linear-gradient(135deg,#a855f7,#ec4899)">🧠 Révision SRS</button>
+    <button class="btn btn-primary" onclick="openShuffle('es')" style="background:linear-gradient(135deg,var(--accent),var(--accent2))">🔀 Session rapide</button>
+  </div>
+</div>
+
+<!-- ═══════════ WORDLE ═══════════ -->
+<div class="screen" id="screen-wordle">
+  <div class="game-header">
+    <button class="back-btn" onclick="goHome()">← Retour</button>
+    <div class="game-title-bar"><h2>🟩 Wordle Espagnol</h2></div>
+    <div class="score-chip" id="wrd-score">0 pts</div>
+  </div>
+  <div style="font-size:.75rem;color:var(--muted);text-align:center;margin-bottom:.8rem" id="wrd-hint">Devine le mot · <span id="wrd-fr-hint">indice : ?</span></div>
+  <div id="wrd-grid" style="display:flex;flex-direction:column;gap:.4rem;margin-bottom:1.2rem;align-items:center"></div>
+  <div id="wrd-keyboard" style="display:flex;flex-direction:column;gap:.4rem;align-items:center;width:100%;max-width:420px"></div>
+  <div id="wrd-msg" style="margin-top:.8rem;font-size:.9rem;text-align:center;min-height:1.5rem"></div>
+</div>
+
+<!-- ═══════════ ANAGRAMME ═══════════ -->
+<div class="screen" id="screen-anagramme">
+  <div class="game-header">
+    <button class="back-btn" onclick="goHome()">← Retour</button>
+    <div class="game-title-bar">
+      <h2>🔀 Anagramme Tap</h2>
+      <div class="progress-wrap"><div class="progress-fill" id="ana-progress"></div></div>
+    </div>
+    <div class="score-chip" id="ana-score">0 pts</div>
+  </div>
+  <div style="text-align:center;width:100%;max-width:600px">
+    <div style="font-size:.72rem;letter-spacing:.12em;text-transform:uppercase;color:var(--muted);margin-bottom:.5rem">🇫🇷 Traduction</div>
+    <div style="font-family:'Unbounded',sans-serif;font-size:1.4rem;margin-bottom:1.5rem;color:var(--accent2)" id="ana-fr">—</div>
+    <div style="font-size:.72rem;letter-spacing:.12em;text-transform:uppercase;color:var(--muted);margin-bottom:.8rem">Remets les lettres dans le bon ordre</div>
+    <div id="ana-answer-row" style="display:flex;gap:.4rem;justify-content:center;flex-wrap:wrap;min-height:56px;margin-bottom:1rem;align-items:center;background:var(--surface);border-radius:10px;padding:.8rem;border:1px solid var(--border)"></div>
+    <div id="ana-tiles" style="display:flex;gap:.4rem;justify-content:center;flex-wrap:wrap;margin-bottom:1.2rem"></div>
+    <div style="display:flex;gap:.8rem;justify-content:center">
+      <button class="btn btn-ghost" onclick="anaReset()">↩ Reset</button>
+      <button class="btn btn-primary" onclick="anaCheck()">Valider</button>
+    </div>
+    <div id="ana-timer-bar" style="height:4px;background:var(--border);border-radius:2px;margin-top:1rem;overflow:hidden">
+      <div id="ana-timer-fill" style="height:100%;background:linear-gradient(90deg,var(--success),var(--accent2),var(--error));border-radius:2px;width:100%;transition:width .1s linear"></div>
+    </div>
+    <div id="ana-feedback" style="margin-top:.6rem;font-size:.9rem"></div>
+  </div>
+</div>
+
+<!-- ═══════════ QUI SUIS-JE ═══════════ -->
+<div class="screen" id="screen-quisuisje">
+  <div class="game-header">
+    <button class="back-btn" onclick="goHome()">← Retour</button>
+    <div class="game-title-bar">
+      <h2>🕵️ Qui suis-je ?</h2>
+      <div class="progress-wrap"><div class="progress-fill" id="qsj-progress"></div></div>
+    </div>
+    <div class="score-chip" id="qsj-score">0 pts</div>
+  </div>
+  <div style="width:100%;max-width:700px">
+    <div style="display:flex;gap:.5rem;margin-bottom:1.2rem;justify-content:center" id="qsj-points-display"></div>
+    <div id="qsj-indices" style="display:flex;flex-direction:column;gap:.6rem;margin-bottom:1.2rem"></div>
+    <div class="options-grid" id="qsj-options"></div>
+    <div id="qsj-feedback" style="margin-top:.8rem;text-align:center;font-size:.9rem"></div>
+  </div>
+</div>
+
+<!-- ═══════════ BLITZ TAP ═══════════ -->
+<div class="screen" id="screen-blitz">
+  <div class="game-header">
+    <button class="back-btn" onclick="stopBlitz();goHome()">← Retour</button>
+    <div class="game-title-bar">
+      <h2>⚡ Blitz Tap</h2>
+    </div>
+    <div style="display:flex;gap:.8rem;align-items:center">
+      <div style="font-family:'Unbounded',sans-serif;font-size:.85rem;color:var(--accent2)" id="blitz-timer">60</div>
+      <div class="score-chip" id="blitz-score">0</div>
+    </div>
+  </div>
+  <div class="timer-bar" style="width:100%;max-width:700px"><div class="timer-fill" id="blitz-timer-fill" style="width:100%"></div></div>
+  <div style="width:100%;max-width:700px;text-align:center">
+    <div style="font-family:'Unbounded',sans-serif;font-size:clamp(2rem,6vw,3.5rem);font-weight:900;margin-bottom:2rem;line-height:1" id="blitz-word">—</div>
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:1rem" id="blitz-opts"></div>
+    <div style="margin-top:1rem;font-size:.8rem;color:var(--muted)" id="blitz-streak-display">🔥 0</div>
+  </div>
+</div>
+
+<!-- ═══════════ CHAÎNE DE MOTS ═══════════ -->
+<div class="screen" id="screen-chaine">
+  <div class="game-header">
+    <button class="back-btn" onclick="goHome()">← Retour</button>
+    <div class="game-title-bar"><h2>🔗 Chaîne de Mots</h2></div>
+    <div class="score-chip" id="chain-score">0</div>
+  </div>
+  <div style="width:100%;max-width:700px;text-align:center">
+    <div style="font-size:.72rem;letter-spacing:.12em;text-transform:uppercase;color:var(--muted);margin-bottom:.4rem">Mot actuel</div>
+    <div style="font-family:'Unbounded',sans-serif;font-size:2rem;font-weight:900;margin-bottom:.3rem" id="chain-current">—</div>
+    <div style="color:var(--muted);font-size:.85rem;margin-bottom:.4rem" id="chain-current-fr">—</div>
+    <div style="font-size:.8rem;color:var(--accent3);margin-bottom:1.5rem">La traduction du prochain doit commencer par <strong id="chain-next-letter" style="font-size:1.2rem">—</strong></div>
+    <div class="options-grid" id="chain-options"></div>
+    <div id="chain-trail" style="display:flex;flex-wrap:wrap;gap:.4rem;justify-content:center;margin-top:1.2rem;max-height:80px;overflow:hidden"></div>
+    <div id="chain-feedback" style="margin-top:.8rem;font-size:.9rem"></div>
+  </div>
+</div>
+
+<!-- ═══════════ RÉVISION PAR JOUR ═══════════ -->
+<div class="screen" id="screen-byday">
+  <div class="game-header">
+    <button class="back-btn" onclick="goHome()">← Retour</button>
+    <div class="game-title-bar"><h2 id="byday-title">📆 Réviser par jour</h2></div>
+    <div class="score-chip" id="byday-score">0 pts</div>
+  </div>
+
+  <!-- Setup: choose date + mode -->
+  <div id="byday-setup" style="width:100%;max-width:660px;text-align:center">
+    <div style="font-size:.85rem;color:var(--muted);margin-bottom:1.5rem;line-height:1.6" id="byday-subtitle">
+      Choisis une session du journal et révise uniquement ces mots.
+    </div>
+    <div style="font-size:.72rem;letter-spacing:.12em;text-transform:uppercase;color:var(--muted);margin-bottom:.8rem">📅 Choisir une session</div>
+    <div id="byday-sessions-list" style="display:grid;gap:.6rem;margin-bottom:1.5rem"></div>
+    <div id="byday-mode-area" style="display:none">
+      <div style="font-size:.72rem;letter-spacing:.12em;text-transform:uppercase;color:var(--muted);margin-bottom:.8rem">🎮 Mode</div>
+      <div style="display:grid;grid-template-columns:repeat(2,1fr);gap:.5rem;max-width:380px;margin:0 auto 1rem">
+        <button class="tense-btn active" id="bd-mfc" onclick="setBydayMode('flashcard',this)">🃏 Flashcards</button>
+        <button class="tense-btn" id="bd-mqcm" onclick="setBydayMode('qcm',this)">🎯 QCM</button>
+        <button class="tense-btn" id="bd-mfrappe" onclick="setBydayMode('frappe',this)">⌨️ Frappe</button>
+        <button class="tense-btn" id="bd-msurvie" onclick="setBydayMode('survie',this)">❤️ Survie</button>
+        <button class="tense-btn" id="bd-mvitesse" onclick="setBydayMode('vitesse',this)">🚀 Vitesse</button>
+        <button class="tense-btn" id="bd-mblitz" onclick="setBydayMode('blitz',this)">⚡ Blitz</button>
+        <button class="tense-btn" id="bd-msrs" onclick="setBydayMode('srs',this)" style="grid-column:span 2;background:linear-gradient(135deg,rgba(213,0,249,.15),rgba(255,23,68,.1));border-color:rgba(213,0,249,.4)">🧠 SRS (répétition espacée)</button>
+      </div>
+      <div style="display:flex;gap:.5rem;flex-wrap:wrap;justify-content:center;max-width:500px;margin:0 auto">
+        <button class="btn btn-primary" style="padding:.9rem 1.8rem;font-size:.95rem;box-shadow:0 4px 20px var(--accent2)44" onclick="startByday()">▶ Lancer la révision</button>
+        <button class="btn" onclick="addByDayToSRS()" style="background:linear-gradient(135deg,#a855f7,#ec4899);color:#fff;padding:.9rem 1.4rem;font-size:.9rem;border:none">➕ Ajouter au SRS</button>
+      </div>
+      <div style="text-align:center;font-size:.72rem;color:var(--muted);margin-top:.8rem;line-height:1.5">
+        <span style="opacity:.8">💡 <strong style="color:var(--neon-purple)">Ajouter au SRS</strong> — les mots iront dans ta pile SRS globale pour révision espacée</span>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════ RÉPÉTITION ESPACÉE (SRS) ═══════════ -->
+<div class="screen with-tabbar" id="screen-srs">
+  <div class="game-header">
+    <button class="back-btn" onclick="goHome()">← Retour</button>
+    <div class="game-title-bar"><h2 id="srs-title">🧠 Révision SRS</h2></div>
+    <div style="display:flex;gap:.5rem;align-items:center">
+      <button id="srs-undo-btn" onclick="srsUndo()" style="display:none;align-items:center;gap:.3rem;background:rgba(255,255,255,.06);border:1.5px solid rgba(255,255,255,.2);color:var(--text);padding:.4rem .7rem;border-radius:10px;font-size:.72rem;cursor:pointer;font-family:'Unbounded',sans-serif" title="Annuler la dernière réponse (Z)">↶</button>
+      <button onclick="openStats(srsState.lang)" style="background:linear-gradient(135deg,rgba(0,229,255,.18),rgba(56,189,248,.1));border:1.5px solid rgba(0,229,255,.4);color:var(--text);padding:.4rem .7rem;border-radius:10px;font-size:.72rem;cursor:pointer;font-family:'Unbounded',sans-serif" title="Statistiques">📊</button>
+      <button onclick="showSRSCalendar()" style="background:linear-gradient(135deg,rgba(213,0,249,.2),rgba(0,229,255,.15));border:1.5px solid rgba(213,0,249,.4);color:var(--text);padding:.4rem .7rem;border-radius:10px;font-size:.72rem;cursor:pointer;font-family:'Unbounded',sans-serif" title="Voir le calendrier des révisions">📅</button>
+      <span style="font-size:.72rem;color:var(--accent2);font-family:'Unbounded',sans-serif" id="srs-counter">0/0</span>
+    </div>
+  </div>
+
+  <!-- Calendar modal -->
+  <div id="srs-calendar-modal" style="display:none;position:fixed;inset:0;background:rgba(0,0,0,.85);backdrop-filter:blur(10px);z-index:1000;padding:2rem 1rem;overflow-y:auto" onclick="if(event.target===this) closeSRSCalendar()">
+    <div style="max-width:520px;margin:0 auto;background:linear-gradient(135deg,var(--surface),var(--surface2));border:1.5px solid rgba(213,0,249,.4);border-radius:20px;padding:1.6rem 1.4rem;box-shadow:0 20px 60px rgba(0,0,0,.6)">
+      <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:1.2rem">
+        <div style="font-family:'Unbounded',sans-serif;font-size:1.1rem;background:linear-gradient(135deg,var(--neon-purple),var(--neon-cyan));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text">📅 Planning SRS</div>
+        <button onclick="closeSRSCalendar()" style="background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.1);color:var(--text);width:32px;height:32px;border-radius:50%;cursor:pointer;font-size:1.1rem">✕</button>
+      </div>
+      <div id="srs-calendar-content" style="max-height:70vh;overflow-y:auto"></div>
+    </div>
+  </div>
+
+  <!-- Empty state -->
+  <div id="srs-empty" style="display:none;width:100%;max-width:500px;text-align:center;padding:2rem">
+    <div style="font-size:3.5rem;margin-bottom:.8rem">✨</div>
+    <div style="font-family:'Unbounded',sans-serif;font-size:1.2rem;margin-bottom:.6rem" id="srs-empty-title">Aucune carte à réviser !</div>
+    <div style="color:var(--muted);font-size:.9rem;line-height:1.6;margin-bottom:1.5rem" id="srs-empty-desc">Tu es à jour. Reviens plus tard ou ajoute de nouveaux mots à ta pile de révision.</div>
+    <button class="btn btn-primary" onclick="srsAddNew()" style="margin-bottom:.6rem;width:100%;max-width:280px" id="srs-empty-add">+ Ajouter 10 mots</button>
+    <button class="btn btn-ghost" onclick="goHome()" style="width:100%;max-width:280px">Accueil</button>
+  </div>
+
+  <!-- Active SRS -->
+  <div id="srs-active" style="display:none;width:100%;max-width:500px">
+    <!-- Session filter badge -->
+    <div id="srs-filter-badge" style="display:none;background:linear-gradient(135deg,rgba(213,0,249,.15),rgba(255,23,68,.08));border:1.5px solid rgba(213,0,249,.4);border-radius:12px;padding:.6rem 1rem;margin-bottom:1rem;align-items:center;justify-content:space-between;gap:.5rem">
+      <div style="font-size:.78rem;color:var(--text)">
+        📆 Filtré sur <strong id="srs-filter-label" style="color:var(--neon-purple)"></strong>
+      </div>
+      <button onclick="srsClearFilter()" style="background:none;border:none;color:var(--muted);cursor:pointer;font-size:1rem;padding:.2rem .4rem" title="Retirer le filtre">✕</button>
+    </div>
+    <div style="display:flex;justify-content:center;gap:.8rem;margin-bottom:1.2rem;flex-wrap:wrap">
+      <div style="background:var(--surface);border:1px solid var(--border);border-radius:10px;padding:.4rem .8rem;font-size:.75rem">
+        <span style="color:var(--muted)">🆕 Nouvelles</span> <strong id="srs-new-count" style="color:var(--accent)">0</strong>
+      </div>
+      <div style="background:var(--surface);border:1px solid var(--border);border-radius:10px;padding:.4rem .8rem;font-size:.75rem">
+        <span style="color:var(--muted)">🔄 À revoir</span> <strong id="srs-due-count" style="color:#fb923c">0</strong>
+      </div>
+      <div style="background:var(--surface);border:1px solid var(--border);border-radius:10px;padding:.4rem .8rem;font-size:.75rem">
+        <span style="color:var(--muted)">✨ Acquis</span> <strong id="srs-mastered-count" style="color:var(--success)">0</strong>
+      </div>
+    </div>
+
+    <!-- Daily new-card limit (like Anki) -->
+    <div style="display:flex;justify-content:center;align-items:center;gap:.5rem;margin:-.4rem 0 1rem;font-size:.75rem;color:var(--muted);flex-wrap:wrap">
+      <span>Nouvelles cartes / jour</span>
+      <button onclick="srsSetNewPerDay(-5)" style="width:26px;height:26px;border-radius:8px;border:1px solid var(--border);background:var(--surface);color:var(--text);cursor:pointer">−</button>
+      <strong id="srs-npd-value" style="color:var(--accent);min-width:1.6rem;text-align:center">20</strong>
+      <button onclick="srsSetNewPerDay(5)" style="width:26px;height:26px;border-radius:8px;border:1px solid var(--border);background:var(--surface);color:var(--text);cursor:pointer">+</button>
+      <span id="srs-npd-hint" style="width:100%;text-align:center;font-size:.68rem;opacity:.8"></span>
+    </div>
+    <div style="text-align:center;font-size:.66rem;color:var(--muted);opacity:.7;margin:-.5rem 0 .9rem" class="srs-kbd-hint">⌨️ Espace = révéler · 1-4 = noter · Z = annuler</div>
+
+    <!-- Simulation mode toggle -->
+    <div style="display:flex;justify-content:center;align-items:center;gap:.6rem;margin-bottom:1rem;background:linear-gradient(135deg,rgba(213,0,249,.1),rgba(255,23,68,.05));border:1.5px dashed rgba(213,0,249,.35);border-radius:12px;padding:.6rem 1rem">
+      <span style="font-size:1.1rem">⏩</span>
+      <label style="display:flex;align-items:center;gap:.5rem;cursor:pointer;font-size:.78rem;color:var(--text)">
+        <input type="checkbox" id="srs-sim-toggle" onchange="toggleSRSSim()" style="width:16px;height:16px;accent-color:var(--neon-purple);cursor:pointer">
+        <span>Mode <strong style="color:var(--neon-purple)">simulation</strong> (1 jour = 3 sec)</span>
+      </label>
+    </div>
+
+    <div class="srs-stack" id="srs-stack"></div>
+
+    <div id="srs-grade-area" style="display:none">
+      <div style="text-align:center;font-size:.7rem;color:var(--muted);margin-bottom:.6rem;letter-spacing:.1em;text-transform:uppercase">Comment c'était ?</div>
+      <div style="display:flex;gap:.5rem">
+        <button class="srs-grade-btn srs-grade-again" onclick="srsGrade(0)">Encore<small id="srs-int-0">&lt;10min</small></button>
+        <button class="srs-grade-btn srs-grade-hard" onclick="srsGrade(1)">Difficile<small id="srs-int-1">1j</small></button>
+        <button class="srs-grade-btn srs-grade-good" onclick="srsGrade(2)">Bien<small id="srs-int-2">3j</small></button>
+        <button class="srs-grade-btn srs-grade-easy" onclick="srsGrade(3)">Facile<small id="srs-int-3">7j</small></button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════ STATISTIQUES ═══════════ -->
+<div class="screen lesson-screen" id="screen-stats">
+  <div class="game-header" style="max-width:720px">
+    <button class="back-btn" onclick="goHome()">← Retour</button>
+    <div class="game-title-bar"><h2>📊 Statistiques</h2></div>
+  </div>
+  <div style="width:100%;max-width:720px">
+    <div class="stx-tabs">
+      <button class="stx-tab" data-lang="es" onclick="statsSetLang('es')">🇪🇸 Espagnol</button>
+      <button class="stx-tab" data-lang="ln" onclick="statsSetLang('ln')">🇨🇩 Lingala</button>
+      <button class="stx-tab" data-lang="en" onclick="statsSetLang('en')">🇬🇧 Anglais</button>
+      <button class="stx-tab" data-lang="dz" onclick="statsSetLang('dz')">🇩🇿 Darija</button>
+      <button class="stx-tab" style="margin-left:auto" onclick="openSRS(statsLang)">🧠 Réviser</button>
+    </div>
+    <div id="stats-content"></div>
+  </div>
+  <div id="stats-tip"></div>
+</div>
+
+<!-- ═══════════ SESSION RAPIDE ═══════════ -->
+<div class="screen" id="screen-shuffle">
+  <div class="game-header">
+    <button class="back-btn" onclick="goHome()">← Retour</button>
+    <div class="game-title-bar"><h2 id="shuffle-title">🔀 Session rapide</h2></div>
+    <div class="score-chip" id="shuffle-score">0 pts</div>
+  </div>
+  <div id="shuffle-setup" style="width:100%;max-width:660px;text-align:center">
+    <div style="font-size:.85rem;color:var(--muted);margin-bottom:1.5rem;line-height:1.6" id="shuffle-subtitle">Entraîne-toi sur un sous-deck aléatoire.</div>
+    <div style="margin-bottom:1.2rem">
+      <div style="font-size:.75rem;letter-spacing:.12em;text-transform:uppercase;color:var(--muted);margin-bottom:.8rem">Nombre de mots</div>
+      <div style="display:flex;gap:.5rem;justify-content:center;flex-wrap:wrap">
+        <button class="tense-btn active" id="shuf-n15" onclick="setShufCount(15,this)">15 mots</button>
+        <button class="tense-btn" id="shuf-n30" onclick="setShufCount(30,this)">30 mots</button>
+        <button class="tense-btn" id="shuf-nall" onclick="setShufCount(0,this)">Tout le deck</button>
+      </div>
+    </div>
+    <div style="margin-bottom:1.5rem">
+      <div style="font-size:.75rem;letter-spacing:.12em;text-transform:uppercase;color:var(--muted);margin-bottom:.8rem">Mode</div>
+      <div style="display:grid;grid-template-columns:repeat(2,1fr);gap:.5rem;max-width:380px;margin:0 auto">
+        <button class="tense-btn active" id="shuf-mfc" onclick="setShufMode('flashcard',this)">🃏 Flashcards</button>
+        <button class="tense-btn" id="shuf-mqcm" onclick="setShufMode('qcm',this)">🎯 QCM</button>
+        <button class="tense-btn" id="shuf-mfrappe" onclick="setShufMode('frappe',this)">⌨️ Frappe</button>
+        <button class="tense-btn" id="shuf-msurvie" onclick="setShufMode('survie',this)">❤️ Survie</button>
+        <button class="tense-btn" id="shuf-mvitesse" onclick="setShufMode('vitesse',this)">🚀 Vitesse</button>
+        <button class="tense-btn" id="shuf-mblitz" onclick="setShufMode('blitz',this)">⚡ Blitz</button>
+      </div>
+    </div>
+    <div id="shuffle-deck-info" style="font-size:.8rem;color:var(--accent2);margin-bottom:1.2rem"></div>
+    <button class="btn btn-primary" style="padding:1rem 2.5rem;font-size:1rem;box-shadow:0 4px 20px var(--accent)44" onclick="startShuffle()">🔀 Lancer</button>
+  </div>
+  <!-- Flashcard mode -->
+  <div id="shuffle-fc" style="display:none;width:100%;max-width:660px;text-align:center">
+    <div class="progress-wrap" style="margin-bottom:1rem"><div class="progress-fill" id="shuf-progress"></div></div>
+    <div class="main-card" id="shuf-card" onclick="flipShufCard()" style="cursor:pointer;margin-bottom:1.2rem;min-height:200px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:1rem;background:linear-gradient(135deg,var(--surface),var(--surface2));border:2px solid var(--border);transition:all .3s">
+      <div style="font-size:.7rem;letter-spacing:.18em;text-transform:uppercase;color:var(--muted)" id="shuf-lang-label">🇪🇸 Espagnol</div>
+      <div class="question-word" id="shuf-word-front" style="font-size:clamp(1.8rem,6vw,3rem);font-weight:900">—</div>
+      <div id="shuf-back-area" style="display:none;border-top:1px solid var(--border);padding-top:1rem;width:100%;animation:fadeIn .3s ease">
+        <div style="font-size:.7rem;letter-spacing:.15em;text-transform:uppercase;color:var(--accent2);margin-bottom:.5rem">🇫🇷 Traduction</div>
+        <div style="font-size:1.5rem;font-weight:700;color:var(--text);line-height:1.3" id="shuf-word-back">—</div>
+      </div>
+      <div id="shuf-tap-hint" style="font-size:.75rem;color:var(--muted);opacity:.7">↓ Tap pour révéler</div>
+    </div>
+    <div class="btn-row" id="shuf-eval-btns" style="display:none;gap:.8rem">
+      <button class="btn" style="background:rgba(255,68,68,.15);color:#ff4d6d;border:1.5px solid #ff4d6d44;flex:1;padding:.9rem" onclick="evalShuffle(false)">✗ Pas encore</button>
+      <button class="btn" style="background:rgba(0,200,150,.15);color:var(--success);border:1.5px solid var(--success);flex:1;padding:.9rem" onclick="evalShuffle(true)">✓ Je le savais</button>
+    </div>
+  </div>
+  <!-- QCM mode -->
+  <div id="shuffle-qcm" style="display:none;width:100%;max-width:660px;text-align:center">
+    <div class="progress-wrap" style="margin-bottom:.8rem"><div class="progress-fill" id="shuf-qcm-progress"></div></div>
+    <div class="main-card" style="margin-bottom:1.2rem">
+      <div style="font-size:.65rem;letter-spacing:.15em;text-transform:uppercase;color:var(--muted);margin-bottom:.4rem" id="shuf-qcm-lang">🇪🇸</div>
+      <div class="question-word" id="shuf-qcm-word">—</div>
+    </div>
+    <div class="options-grid" id="shuf-qcm-opts"></div>
+    <div id="shuf-qcm-fb" style="margin-top:.8rem;font-size:.9rem"></div>
+  </div>
+  <!-- Frappe mode -->
+  <div id="shuffle-frappe" style="display:none;width:100%;max-width:660px;text-align:center">
+    <div class="progress-wrap" style="margin-bottom:1rem"><div class="progress-fill" id="shuf-fr-progress"></div></div>
+    <div class="main-card" style="margin-bottom:1.2rem;background:linear-gradient(135deg,var(--surface),var(--surface2));padding:1.5rem">
+      <div style="font-size:.7rem;letter-spacing:.15em;text-transform:uppercase;color:var(--muted);margin-bottom:.5rem" id="shuf-fr-lang">🇫🇷 Traduction française</div>
+      <div class="question-word" id="shuf-fr-clue" style="font-size:clamp(1.4rem,5vw,2rem)">—</div>
+    </div>
+    <input type="text" class="type-input" id="shuf-fr-input" placeholder="Écris en langue cible…" autocomplete="off" spellcheck="false" style="margin-bottom:.8rem">
+    <button class="btn btn-primary" onclick="checkShufFrappe()" style="width:100%">Valider</button>
+    <div id="shuf-fr-feedback" style="margin-top:.8rem;font-size:.9rem;min-height:1.5rem"></div>
+  </div>
+  <!-- Survie mode -->
+  <div id="shuffle-survie" style="display:none;width:100%;max-width:660px;text-align:center">
+    <div style="display:flex;justify-content:center;gap:.4rem;margin-bottom:1rem;font-size:1.4rem" id="shuf-su-hearts">❤️❤️❤️</div>
+    <div style="font-size:.85rem;color:var(--accent2);margin-bottom:.8rem" id="shuf-su-streak">🔥 Combo : 0</div>
+    <div class="main-card" style="margin-bottom:1.2rem;background:linear-gradient(135deg,var(--surface),var(--surface2))">
+      <div style="font-size:.7rem;letter-spacing:.15em;text-transform:uppercase;color:var(--muted);margin-bottom:.5rem" id="shuf-su-lang">🇪🇸</div>
+      <div class="question-word" id="shuf-su-word">—</div>
+    </div>
+    <div class="options-grid" id="shuf-su-opts"></div>
+  </div>
+  <!-- Vitesse mode -->
+  <div id="shuffle-vitesse" style="display:none;width:100%;max-width:660px;text-align:center">
+    <div class="timer-bar" style="margin-bottom:1rem"><div class="timer-fill" id="shuf-vi-timer-fill" style="width:100%"></div></div>
+    <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:1rem;font-family:'Unbounded',sans-serif">
+      <div style="font-size:.85rem;color:var(--accent2)" id="shuf-vi-counter">0/0</div>
+      <div style="font-size:.95rem;color:var(--accent)" id="shuf-vi-timer">10s</div>
+    </div>
+    <div class="main-card" style="margin-bottom:1.2rem;background:linear-gradient(135deg,var(--surface),var(--surface2))">
+      <div style="font-size:.7rem;letter-spacing:.15em;text-transform:uppercase;color:var(--muted);margin-bottom:.5rem" id="shuf-vi-lang">🇪🇸</div>
+      <div class="question-word" id="shuf-vi-word">—</div>
+    </div>
+    <div class="options-grid" id="shuf-vi-opts"></div>
+  </div>
+  <!-- Blitz mode is reused from existing blitz state -->
+</div>
+
+<!-- ═══════════ JOURNAL ═══════════ -->
+<div class="screen lesson-screen" id="screen-journal">
+  <div class="game-header" style="max-width:800px">
+    <button class="back-btn" onclick="goHome()">← Retour</button>
+    <div class="game-title-bar"><h2 id="journal-title">📅 Journal des mots</h2></div>
+  </div>
+  <div id="journal-content" style="width:100%;max-width:800px"></div>
+</div>
+
+<!-- ═══════════ GRAMMAR JOURNAL ═══════════ -->
+<div class="screen lesson-screen" id="screen-grammar">
+  <div class="game-header" style="max-width:900px">
+    <button class="back-btn" onclick="goHome()">← Retour</button>
+    <div class="game-title-bar">
+      <h2 style="background:linear-gradient(135deg,#a855f7,#ec4899);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text">📘 Journal Grammaire</h2>
+    </div>
+  </div>
+  <div id="grammar-content" style="width:100%;max-width:900px"></div>
+</div>
+
+<!-- ═══════════ GRAMMAR REVIEW ═══════════ -->
+<div class="screen lesson-screen" id="screen-grammar-review">
+  <div class="game-header" style="max-width:620px">
+    <button class="back-btn" onclick="openGrammarJournal()">← Journal</button>
+    <div class="game-title-bar">
+      <h2 style="background:linear-gradient(135deg,#a855f7,#ec4899);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text">🧠 Révision Grammaire</h2>
+    </div>
+  </div>
+  <div id="grammar-review-content" style="width:100%;max-width:620px;margin:0 auto"></div>
+</div>
+
+<!-- ═══════════ GRAMMAR RULE MODAL ═══════════ -->
+<div id="grammar-modal" style="display:none;position:fixed;inset:0;background:rgba(0,0,0,.85);backdrop-filter:blur(10px);z-index:2000;padding:2rem 1rem;overflow-y:auto;align-items:flex-start;justify-content:center" onclick="if(event.target===this) closeGrammarModal()">
+  <div style="max-width:560px;width:100%;background:linear-gradient(135deg,var(--surface),var(--surface2));border:1.5px solid rgba(168,85,247,.4);border-radius:20px;padding:1.8rem 1.4rem;margin-top:4rem;box-shadow:0 20px 60px rgba(0,0,0,.6)">
+    <div style="display:flex;justify-content:flex-end;margin-bottom:.6rem">
+      <button onclick="closeGrammarModal()" style="background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.1);color:var(--text);width:32px;height:32px;border-radius:50%;cursor:pointer;font-size:1.1rem">✕</button>
+    </div>
+    <div id="grammar-modal-body"></div>
+  </div>
+</div>
+
+<!-- ═══════════ FLASHCARD SWIPE ═══════════ -->
+<div class="screen lesson-screen" id="screen-fcswipe">
+  <div class="game-header" style="max-width:420px">
+    <button class="back-btn" onclick="fcSwipeQuit()">← Retour</button>
+    <div class="game-title-bar"><h2>🃏 Flashcards Swipe</h2></div>
+    <div class="lesson-score" id="fcs-counter">0/0</div>
+  </div>
+  <div style="width:100%;max-width:420px;margin:0 auto" id="fcs-body"></div>
+</div>
+
+<!-- ═══════════ BADGES ═══════════ -->
+<div class="screen lesson-screen" id="screen-badges">
+  <div class="game-header" style="max-width:600px">
+    <button class="back-btn" onclick="openHero()">← Héros</button>
+    <div class="game-title-bar"><h2>🏅 Badges & Succès</h2></div>
+  </div>
+  <div style="width:100%;max-width:600px" id="badges-body"></div>
+</div>
+
+<!-- ═══════════ STORIES ═══════════ -->
+<div class="screen lesson-screen" id="screen-stories">
+  <div class="game-header" style="max-width:500px">
+    <button class="back-btn" onclick="openPath(currentLang)">← Parcours</button>
+    <div class="game-title-bar"><h2>📖 Stories</h2></div>
+  </div>
+  <div style="width:100%;max-width:500px" id="stories-body"></div>
+</div>
+
+<!-- ═══════════ STORY PLAY ═══════════ -->
+<div class="screen lesson-screen" id="screen-story-play">
+  <div class="game-header" style="max-width:500px">
+    <button class="back-btn" onclick="storyQuit()">← Stories</button>
+    <div class="game-title-bar"><h2 id="story-play-title">📖 Story</h2></div>
+  </div>
+  <div style="width:100%;max-width:500px" id="story-play-body"></div>
+  <div style="max-width:500px;width:100%;padding:.8rem 0;text-align:center">
+    <button class="gbtn" id="story-next-btn" onclick="storyNext()">Continuer</button>
+  </div>
+</div>
+
+<!-- ═══════════ LEÇONS ═══════════ -->
+<div class="screen lesson-screen" id="screen-lecons">
+  <div class="game-header" style="max-width:800px">
+    <button class="back-btn" onclick="goHome()">← Retour</button>
+    <div class="game-title-bar"><h2>📖 Leçons & Exercices</h2></div>
+    <div class="lesson-score" id="lecon-score">0 pts</div>
+  </div>
+
+  <div class="lesson-nav">
+    <button class="lesson-tab active" onclick="showLecon('subjuntivo',this)">🔮 Subjonctif — Cours</button>
+    <button class="lesson-tab" onclick="showLecon('subj-exo',this)">✏️ Subjonctif — Exos</button>
+    <button class="lesson-tab" onclick="showLecon('gerundio',this)">🌀 Gérondif — Cours</button>
+    <button class="lesson-tab" onclick="showLecon('ger-exo',this)">✏️ Gérondif — Exos</button>
+  </div>
+
+  <div class="lesson-body" id="lecon-content"></div>
+</div>
+
+<!-- ═══════════ LINGALA HOME ═══════════ -->
+<div class="screen" id="home-ln">
+  <div style="background:radial-gradient(ellipse 80% 60% at 50% -10%,rgba(0,200,150,.18) 0%,transparent 70%),var(--bg);position:fixed;inset:0;z-index:-1"></div>
+  <div style="font-family:'Unbounded',sans-serif;font-size:clamp(2rem,6vw,3.5rem);font-weight:900;background:linear-gradient(135deg,#fff 30%,#00c896 70%);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;text-align:center;margin-bottom:.3rem">Lingala</div>
+  <div style="color:var(--muted);font-size:.85rem;letter-spacing:.15em;text-transform:uppercase;text-align:center;margin-bottom:2rem">🇨🇩 Français · 23 mots</div>
+  <div class="stats-bar">
+    <div class="stat"><div class="stat-val" id="ln-stat-score">0</div><div class="stat-lbl">XP</div></div>
+    <div class="stat"><div class="stat-val" id="ln-stat-mastered">0</div><div class="stat-lbl">Maîtrisés</div></div>
+  </div>
+  <div class="games-grid" style="max-width:700px">
+    <div class="game-card" style="--card-color:#ffd60a;--card-glow:radial-gradient(circle at 50% 0%,#ffd60a,transparent 70%)" onclick="startLNGame('flashcard')">
+      <span class="card-icon">🃏</span>
+      <div class="card-title">Flashcards</div>
+      <div class="card-desc">Révise les mots lingala → français avec auto-évaluation.</div>
+      <span class="card-badge">Révision libre</span>
+    </div>
+    <div class="game-card" style="--card-color:#ff4d6d;--card-glow:radial-gradient(circle at 50% 0%,#ff4d6d,transparent 70%)" onclick="startLNGame('qcm')">
+      <span class="card-icon">🎯</span>
+      <div class="card-title">QCM</div>
+      <div class="card-desc">4 choix, 1 bonne réponse. Teste ta mémoire sur le vocabulaire lingala.</div>
+      <span class="card-badge">Score & Combo</span>
+    </div>
+    <div class="game-card" style="--card-color:#00f5d4;--card-glow:radial-gradient(circle at 50% 0%,#00f5d4,transparent 70%)" onclick="startLNGame('typing')">
+      <span class="card-icon">⌨️</span>
+      <div class="card-title">Frappe le mot</div>
+      <div class="card-desc">Vois le français, écris le mot en lingala. Pure mémoire.</div>
+      <span class="card-badge">Mémoire active</span>
+    </div>
+  </div>
+  <div style="margin-top:2rem;display:flex;gap:.8rem;flex-wrap:wrap;justify-content:center">
+    <button class="btn btn-ghost" onclick="showScreen('lang-select')">🌍 Changer de langue</button>
+    <button class="btn btn-ghost" onclick="openJournal('ln')">📅 Journal des mots</button>
+    <button class="btn btn-ghost" onclick="openStats('ln')">📊 Stats</button>
+    <button class="btn btn-ghost" onclick="openGrammarJournal()" style="background:linear-gradient(135deg,rgba(168,85,247,.15),rgba(236,72,153,.15));border-color:rgba(168,85,247,.4);color:#e9d5ff">📘 Grammaire</button>
+    <button class="btn btn-primary" onclick="openByDay('ln')" style="background:linear-gradient(135deg,#ffd60a,#fb923c)">📆 Par jour</button>
+    <button class="btn btn-primary" onclick="openSRS('ln')" style="background:linear-gradient(135deg,#a855f7,#ec4899)">🧠 Révision SRS</button>
+    <button class="btn btn-primary" onclick="openShuffle('ln')" style="background:linear-gradient(135deg,var(--success),#14b8a6)">🔀 Session rapide</button>
+  </div>
+</div>
+
+<!-- ═══════════ DARIJA HOME ═══════════ -->
+<div class="screen" id="home-dz">
+  <div style="background:radial-gradient(ellipse 80% 60% at 50% -10%,rgba(0,166,81,.18) 0%,transparent 70%),var(--bg);position:fixed;inset:0;z-index:-1"></div>
+  <div style="font-family:'Unbounded',sans-serif;font-size:clamp(2rem,6vw,3.5rem);font-weight:900;background:linear-gradient(135deg,#fff 30%,#00a651 70%);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;text-align:center;margin-bottom:.3rem">🇩🇿 دارجة</div>
+  <div style="color:var(--muted);font-size:.85rem;letter-spacing:.15em;text-transform:uppercase;text-align:center;margin-bottom:2rem">Darija algérienne · Français</div>
+  <div class="stats-bar">
+    <div class="stat"><div class="stat-val" id="dz-stat-score">0</div><div class="stat-lbl">XP</div></div>
+    <div class="stat"><div class="stat-val" id="dz-stat-mastered">0</div><div class="stat-lbl">Maîtrisés</div></div>
+  </div>
+  <div class="games-grid" style="max-width:700px">
+    <div class="game-card" style="--card-color:#00a651;--card-glow:radial-gradient(circle at 50% 0%,#00a651,transparent 70%)" onclick="startDZGame('flashcard')">
+      <span class="card-icon">🃏</span>
+      <div class="card-title">Flashcards</div>
+      <div class="card-desc">Révise les mots darija → français avec auto-évaluation.</div>
+      <span class="card-badge">Révision libre</span>
+    </div>
+    <div class="game-card" style="--card-color:#d21034;--card-glow:radial-gradient(circle at 50% 0%,#d21034,transparent 70%)" onclick="startDZGame('qcm')">
+      <span class="card-icon">🎯</span>
+      <div class="card-title">QCM</div>
+      <div class="card-desc">4 choix, 1 bonne réponse. Teste ta mémoire sur le vocabulaire darija.</div>
+      <span class="card-badge">Score & Combo</span>
+    </div>
+    <div class="game-card" style="--card-color:#ffd60a;--card-glow:radial-gradient(circle at 50% 0%,#ffd60a,transparent 70%)" onclick="startDZGame('typing')">
+      <span class="card-icon">⌨️</span>
+      <div class="card-title">Frappe le mot</div>
+      <div class="card-desc">Vois le français, écris le mot en darija. Pure mémoire.</div>
+      <span class="card-badge">Mémoire active</span>
+    </div>
+  </div>
+  <div style="margin-top:2rem;display:flex;gap:.8rem;flex-wrap:wrap;justify-content:center">
+    <button class="btn btn-ghost" onclick="showScreen('lang-select')">🌍 Changer de langue</button>
+    <button class="btn btn-ghost" onclick="openJournal('dz')">📅 Journal des mots</button>
+    <button class="btn btn-ghost" onclick="openStats('dz')">📊 Stats</button>
+    <button class="btn btn-ghost" onclick="openGrammarJournal()" style="background:linear-gradient(135deg,rgba(0,166,81,.15),rgba(210,16,52,.15));border-color:rgba(0,166,81,.4);color:#90eeb8">📘 Grammaire</button>
+    <button class="btn btn-primary" onclick="openByDay('dz')" style="background:linear-gradient(135deg,#00a651,#14b8a6)">📆 Par jour</button>
+    <button class="btn btn-primary" onclick="openSRS('dz')" style="background:linear-gradient(135deg,#00a651,#d21034)">🧠 Révision SRS</button>
+    <button class="btn btn-primary" onclick="openShuffle('dz')" style="background:linear-gradient(135deg,#00a651,#ffd60a)">🔀 Session rapide</button>
+  </div>
+</div>
+
+<!-- ═══════════ ANGLAIS HOME ═══════════ -->
+<div class="screen" id="home-en">
+  <div style="background:radial-gradient(ellipse 80% 60% at 50% -10%,rgba(76,201,240,.18) 0%,transparent 70%),var(--bg);position:fixed;inset:0;z-index:-1"></div>
+  <div style="font-family:'Unbounded',sans-serif;font-size:clamp(2rem,6vw,3.5rem);font-weight:900;background:linear-gradient(135deg,#fff 30%,#4cc9f0 70%);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;text-align:center;margin-bottom:.3rem">English</div>
+  <div style="color:var(--muted);font-size:.85rem;letter-spacing:.15em;text-transform:uppercase;text-align:center;margin-bottom:.4rem"><span id="en-home-sub">🇬🇧 Anglais → Français</span></div>
+  <div style="color:var(--muted);font-size:.75rem;text-align:center;margin-bottom:1.8rem;font-style:italic">Vocabulaire avancé tiré d'animes et séries</div>
+  <div class="stats-bar">
+    <div class="stat"><div class="stat-val" id="en-stat-score">0</div><div class="stat-lbl">XP</div></div>
+    <div class="stat"><div class="stat-val" id="en-stat-mastered">0</div><div class="stat-lbl">Maîtrisés</div></div>
+  </div>
+  <div class="games-grid" style="max-width:800px">
+    <div class="game-card" style="--card-color:#ffd60a;--card-glow:radial-gradient(circle at 50% 0%,#ffd60a,transparent 70%)" onclick="startENGame('flashcard')">
+      <span class="card-icon">🃏</span>
+      <div class="card-title">Flashcards</div>
+      <div class="card-desc">Révise les mots anglais → français avec auto-évaluation.</div>
+      <span class="card-badge">Révision libre</span>
+    </div>
+    <div class="game-card" style="--card-color:#ff4d6d;--card-glow:radial-gradient(circle at 50% 0%,#ff4d6d,transparent 70%)" onclick="startENGame('qcm')">
+      <span class="card-icon">🎯</span>
+      <div class="card-title">QCM</div>
+      <div class="card-desc">4 choix, 1 bonne réponse. Teste ta mémoire sur le vocabulaire avancé.</div>
+      <span class="card-badge">Score & Combo</span>
+    </div>
+    <div class="game-card" style="--card-color:#00f5d4;--card-glow:radial-gradient(circle at 50% 0%,#00f5d4,transparent 70%)" onclick="startENGame('typing')">
+      <span class="card-icon">⌨️</span>
+      <div class="card-title">Frappe le mot</div>
+      <div class="card-desc">Vois le français, écris le mot en anglais. Pure mémoire.</div>
+      <span class="card-badge">Mémoire active</span>
+    </div>
+    <div class="game-card" style="--card-color:#c77dff;--card-glow:radial-gradient(circle at 50% 0%,#c77dff,transparent 70%)" onclick="startENGame('survival')">
+      <span class="card-icon">❤️</span>
+      <div class="card-title">Mode Survie</div>
+      <div class="card-desc">3 vies. Chaque erreur coûte une vie. Combien de mots peux-tu enchaîner ?</div>
+      <span class="card-badge">Jusqu'à la mort</span>
+    </div>
+  </div>
+    <!-- ── Parler comme un natif ── -->
+  <div style="width:100%;max-width:800px;margin-top:2.5rem">
+    <div style="font-size:.7rem;letter-spacing:.18em;text-transform:uppercase;color:var(--muted);margin-bottom:1rem;text-align:center;display:flex;align-items:center;gap:.8rem;justify-content:center">
+      <span style="flex:1;height:1px;background:var(--border)"></span>
+      🗣️ Parler comme un natif · US
+      <span style="flex:1;height:1px;background:var(--border)"></span>
+    </div>
+    <div class="games-grid">
+      <div class="game-card" style="--card-color:#ef4444;--card-glow:radial-gradient(circle at 50% 0%,#ef4444,transparent 70%);grid-column:1/-1" onclick="openPronSRS()">
+        <span class="card-icon">🎤</span>
+        <div class="card-title">SRS Prononciation US</div>
+        <div class="card-desc">Une phrase par mot de ton deck, avec la phonétique lisible pour un francophone. Écoute (normal ou lent), répète à voix haute, enregistre-toi si ton navigateur le permet, puis note-toi.</div>
+        <span class="card-badge" id="pron-due-badge">SRS · Audio · Oral</span>
+      </div>
+      <div class="game-card" style="--card-color:#4cc9f0;--card-glow:radial-gradient(circle at 50% 0%,#4cc9f0,transparent 70%);grid-column:1/-1" onclick="openAccentLessons()">
+        <span class="card-icon">📚</span>
+        <div class="card-title">Leçons accent américain</div>
+        <div class="card-desc">7 leçons courtes : flap T, schwa, accent tonique, R américain, TH et H, liaisons. Chaque exemple s'écoute d'un tap.</div>
+        <span class="card-badge">7 leçons · Audio</span>
+      </div>
+      <div class="game-card" style="--card-color:#8b5cf6;--card-glow:radial-gradient(circle at 50% 0%,#8b5cf6,transparent 70%);grid-column:1/-1" onclick="startNative('c1')">
+        <span class="card-icon">🎙️</span>
+        <div class="card-title">Phrases C1 natives</div>
+        <div class="card-desc">30 phrases du quotidien américain, avec tes mots du deck (cut sb some slack, walk a fine line…) et les pièges du français (« I have marre »). Choisis, écoute, puis répète à voix haute.</div>
+        <span class="card-badge" id="nat-best-c1">120s · Audio · Oral</span>
+      </div>
+      <div class="game-card" style="--card-color:#f59e0b;--card-glow:radial-gradient(circle at 50% 0%,#f59e0b,transparent 70%)" onclick="startNative('delatin')">
+        <span class="card-icon">🧱</span>
+        <div class="card-title">Délatinise</div>
+        <div class="card-desc">« postpone » → « put off ». Remplace le mot formel par le phrasal verb qu'un Américain dit vraiment.</div>
+        <span class="card-badge" id="nat-best-delatin">60s · Tap</span>
+      </div>
+      <div class="game-card" style="--card-color:#22d3ee;--card-glow:radial-gradient(circle at 50% 0%,#22d3ee,transparent 70%)" onclick="startNative('connected')">
+        <span class="card-icon">🔗</span>
+        <div class="card-title">Connected speech</div>
+        <div class="card-desc">gonna, wanna, « wader », « Djeet yet? »… Décode l'anglais américain tel qu'il est vraiment parlé.</div>
+        <span class="card-badge" id="nat-best-connected">60s · Audio</span>
+      </div>
+      <div class="game-card" style="--card-color:#34d399;--card-glow:radial-gradient(circle at 50% 0%,#34d399,transparent 70%)" onclick="startNative('reactions')">
+        <span class="card-icon">💬</span>
+        <div class="card-title">Réactions natives</div>
+        <div class="card-desc">Une situation, 4 réponses : trouve la réaction naturelle et évite les calques du français.</div>
+        <span class="card-badge" id="nat-best-reactions">90s · Tap</span>
+      </div>
+      <div class="game-card" style="--card-color:#f472b6;--card-glow:radial-gradient(circle at 50% 0%,#f472b6,transparent 70%)" onclick="startNative('stress')">
+        <span class="card-icon">🎯</span>
+        <div class="card-title">Accent tonique</div>
+        <div class="card-desc">PHOtograph, phoTOgraphy, DAta… Trouve la syllabe forte, puis écoute la prononciation US.</div>
+        <span class="card-badge" id="nat-best-stress">60s · Audio</span>
+      </div>
+    </div>
+  </div>
+  <div style="margin-top:2rem;display:flex;gap:.8rem;flex-wrap:wrap;justify-content:center">
+    <button class="btn btn-ghost" onclick="showScreen('lang-select')">🌍 Changer de langue</button>
+    <button class="btn btn-ghost" onclick="openJournal('en')">📅 Journal des mots</button>
+    <button class="btn btn-ghost" onclick="openStats('en')">📊 Stats</button>
+    <button class="btn btn-ghost" onclick="openGrammarJournal()" style="background:linear-gradient(135deg,rgba(168,85,247,.15),rgba(236,72,153,.15));border-color:rgba(168,85,247,.4);color:#e9d5ff">📘 Grammaire</button>
+    <button class="btn btn-primary" onclick="openByDay('en')" style="background:linear-gradient(135deg,#ffd60a,#fb923c)">📆 Par jour</button>
+    <button class="btn btn-primary" onclick="openSRS('en')" style="background:linear-gradient(135deg,#a855f7,#ec4899)">🧠 Révision SRS</button>
+    <button class="btn btn-primary" onclick="openShuffle('en')" style="background:linear-gradient(135deg,#4cc9f0,#3b82f6)">🔀 Session rapide</button>
+  </div>
+</div>
+
+<!-- ═══════════ NATIVE SPEAKING MODES ═══════════ -->
+<div class="screen" id="screen-native">
+  <div class="game-header" style="max-width:620px">
+    <button class="back-btn" onclick="natQuit()">← Retour</button>
+    <div class="game-title-bar"><h2 id="nat-title">🗣️ Natif</h2></div>
+  </div>
+  <div style="width:100%;max-width:620px">
+    <div id="nat-play">
+      <div id="nat-hint" style="text-align:center;color:var(--muted);font-size:.78rem;margin-bottom:.8rem"></div>
+      <div style="display:flex;justify-content:space-between;align-items:center;font-family:'Unbounded',sans-serif;font-size:.85rem;margin-bottom:.4rem">
+        <span>Score <b id="nat-score" style="color:#4cc9f0">0</b> <span id="nat-combo" style="color:#ffeb3b;margin-left:.4rem"></span></span>
+        <span id="nat-time">60s</span>
+      </div>
+      <div class="timer-bar" style="max-width:none"><div class="timer-fill" id="nat-timer" style="width:100%"></div></div>
+      <div id="nat-prompt" style="text-align:center;margin:1.4rem 0 1.2rem;min-height:90px"></div>
+      <div id="nat-opts" style="display:grid;gap:.6rem"></div>
+      <div id="nat-explain" style="text-align:center;color:#7dd3fc;font-size:.85rem;margin-top:1rem;min-height:1.2rem;font-style:italic"></div>
+      <div style="text-align:center;margin-top:.6rem"><button class="btn btn-ghost" style="padding:.45rem 1rem;font-size:.8rem" onclick="speakEN(nat && nat.q && nat.q.speak)">🔊 Réécouter</button></div>
+    </div>
+    <div id="nat-result" style="display:none;text-align:center;padding:2rem 0"></div>
+  </div>
+</div>
+<!-- ═══════════ PRONUNCIATION SRS ═══════════ -->
+<div class="screen" id="screen-pron">
+  <div class="game-header" style="max-width:620px">
+    <button class="back-btn" onclick="selectLang('en')">← Anglais</button>
+    <div class="game-title-bar"><h2>🎤 Prononciation US</h2></div>
+    <span id="pron-counter" style="font-size:.8rem;color:#ffeb3b"></span>
+  </div>
+  <div id="pron-card" style="width:100%;max-width:620px"></div>
+  <div style="text-align:center;margin-top:1.2rem"><button class="btn btn-ghost" style="font-size:.8rem" onclick="openAccentLessons()">📚 Leçons accent américain</button></div>
+</div>
+
+<!-- ═══════════ ACCENT LESSONS ═══════════ -->
+<div class="screen lesson-screen" id="screen-accent">
+  <div class="game-header" style="max-width:720px">
+    <button class="back-btn" onclick="selectLang('en')">← Anglais</button>
+    <div class="game-title-bar"><h2 id="accent-title">📚 Leçons accent américain</h2></div>
+  </div>
+  <div id="accent-body" style="width:100%;max-width:720px"></div>
+</div>
+
+<!-- ═══════════ FLASHCARD ═══════════ -->
+<div class="screen" id="screen-flashcard">
+  <div class="game-header">
+    <button class="back-btn" onclick="goHome()">← Retour</button>
+    <div class="game-title-bar">
+      <h2>🃏 Flashcards</h2>
+      <div class="progress-wrap"><div class="progress-fill" id="fc-progress"></div></div>
+    </div>
+    <div class="score-chip" id="fc-counter">1/106</div>
+  </div>
+  <div style="font-size:.8rem;color:var(--muted);margin-bottom:1rem;">Clique sur la carte pour révéler</div>
+  <div class="flip-container" onclick="flipCard()">
+    <div class="flip-inner" id="flip-inner">
+      <div class="flip-face flip-front">
+        <div class="flip-lang" id="fc-lang-front">🇪🇸 Espagnol</div>
+        <div class="flip-word" id="fc-es">—</div>
+      </div>
+      <div class="flip-face flip-back">
+        <div class="flip-lang" id="fc-lang-back">🇫🇷 Français</div>
+        <div class="flip-word" id="fc-fr">—</div>
+        <div class="flip-hint">Évalue ton souvenir</div>
+      </div>
+    </div>
+  </div>
+  <div class="flip-nav" id="fc-nav" style="display:none">
+    <button class="btn btn-ghost" onclick="fcRate(false)">😅 Raté</button>
+    <button class="btn btn-success" onclick="fcRate(true)">✅ Su !</button>
+  </div>
+  <div id="fc-ai-area"></div>
+</div>
+
+<!-- ═══════════ QCM ═══════════ -->
+<div class="screen" id="screen-qcm">
+  <div class="game-header">
+    <button class="back-btn" onclick="goHome()">← Retour</button>
+    <div class="game-title-bar">
+      <h2>🎯 QCM Rapide</h2>
+      <div class="progress-wrap"><div class="progress-fill" id="qcm-progress"></div></div>
+    </div>
+    <div style="display:flex;gap:.8rem;align-items:center">
+      <div class="streak-display"><span class="streak-fire">🔥</span><span id="qcm-streak">0</span></div>
+      <div class="score-chip" id="qcm-score">0 pts</div>
+    </div>
+  </div>
+  <div class="main-card" id="qcm-card">
+    <div class="question-label">🇪🇸 Comment dit-on en français ?</div>
+    <div class="question-word" id="qcm-word">—</div>
+    <div class="question-hint" id="qcm-hint"></div>
+  </div>
+  <div class="options-grid" id="qcm-options"></div>
+  <div id="qcm-ai-area"></div>
+</div>
+
+<!-- ═══════════ TYPING ═══════════ -->
+<div class="screen" id="screen-typing">
+  <div class="game-header">
+    <button class="back-btn" onclick="goHome()">← Retour</button>
+    <div class="game-title-bar">
+      <h2>⌨️ Frappe le mot</h2>
+      <div class="progress-wrap"><div class="progress-fill" id="type-progress"></div></div>
+    </div>
+    <div class="score-chip" id="type-score">0 pts</div>
+  </div>
+  <div class="main-card">
+    <div class="question-label">🇫🇷 Traduis en espagnol</div>
+    <div class="question-word" id="type-word">—</div>
+    <input type="text" class="type-input" id="type-input" placeholder="Écris ici…" autocomplete="off" spellcheck="false">
+  </div>
+  <div class="btn-row">
+    <button class="btn btn-secondary" id="type-skip-btn" onclick="typeSkip()">Passer</button>
+    <button class="btn btn-primary" id="type-check-btn" onclick="typeCheck()">Valider ↵</button>
+  </div>
+  <div id="type-ai-area"></div>
+</div>
+
+<!-- ═══════════ CONJUGATION ═══════════ -->
+<div class="screen" id="screen-conjugation">
+  <div class="game-header">
+    <button class="back-btn" onclick="goHome()">← Retour</button>
+    <div class="game-title-bar"><h2>🔮 Conjugaison IA</h2></div>
+    <div class="score-chip" id="conj-score">0 pts</div>
+  </div>
+  <div class="main-card" style="max-width:640px">
+    <div class="question-label">Choisis un verbe et un temps</div>
+    <div style="display:flex;gap:.8rem;flex-wrap:wrap;justify-content:center;margin-bottom:1.2rem">
+      <select id="conj-verb-select" style="background:var(--surface2);color:var(--text);border:1.5px solid var(--border);border-radius:8px;padding:.5rem .8rem;font-family:'DM Sans',sans-serif;font-size:.9rem;outline:none;cursor:pointer"></select>
+      <select id="conj-tense-select" style="background:var(--surface2);color:var(--text);border:1.5px solid var(--border);border-radius:8px;padding:.5rem .8rem;font-family:'DM Sans',sans-serif;font-size:.9rem;outline:none;cursor:pointer">
+        <option value="présent">Présent</option>
+        <option value="prétérit">Prétérit (pretérito indefinido)</option>
+        <option value="imparfait">Imparfait (imperfecto)</option>
+        <option value="futur simple">Futur simple</option>
+        <option value="conditionnel">Conditionnel (condicional)</option>
+        <option value="subjonctif présent">Subjonctif présent</option>
+        <option value="gérondif et participe">Gérondif & Participe passé</option>
+      </select>
+      <button class="btn btn-primary" onclick="loadConjugation()">Générer IA ✨</button>
+    </div>
+    <div id="conj-content">
+      <div style="color:var(--muted);font-style:italic;font-size:.9rem">Sélectionne un verbe et un temps, puis génère !</div>
+    </div>
+  </div>
+  <div id="conj-ai-area"></div>
+</div>
+
+<!-- ═══════════ SPEED ═══════════ -->
+<div class="screen" id="screen-speed">
+  <div class="game-header">
+    <button class="back-btn" onclick="stopSpeed();goHome()">← Retour</button>
+    <div class="game-title-bar">
+      <h2>⚡ Mode Vitesse</h2>
+      <div class="progress-wrap"><div class="progress-fill" id="speed-progress"></div></div>
+    </div>
+    <div class="score-chip" id="speed-score">0 pts</div>
+  </div>
+  <div class="timer-bar"><div class="timer-fill" id="speed-timer" style="width:100%"></div></div>
+  <div class="main-card">
+    <div class="question-label">🇫🇷 Traduis en espagnol</div>
+    <div class="question-word" id="speed-word">—</div>
+    <input type="text" class="type-input" id="speed-input" placeholder="Tape vite !" autocomplete="off" spellcheck="false">
+  </div>
+  <div class="btn-row">
+    <button class="btn btn-primary" onclick="speedCheck()">Valider ↵</button>
+  </div>
+</div>
+
+<!-- ═══════════ SURVIVAL ═══════════ -->
+<div class="screen" id="screen-survival">
+  <div class="game-header">
+    <button class="back-btn" onclick="goHome()">← Retour</button>
+    <div class="game-title-bar"><h2>❤️ Mode Survie</h2></div>
+    <div style="display:flex;gap:.8rem;align-items:center">
+      <div class="lives" id="survival-lives">❤️❤️❤️</div>
+      <div class="score-chip" id="survival-score">0</div>
+    </div>
+  </div>
+  <div class="main-card" id="survival-card">
+    <div class="question-label">🇪🇸 Comment dit-on en français ?</div>
+    <div class="question-word" id="survival-word">—</div>
+  </div>
+  <div class="options-grid" id="survival-options"></div>
+</div>
+
+<!-- ═══════════ DÉFI DES TEMPS ═══════════ -->
+<div class="screen" id="screen-tempsdefi">
+  <div class="game-header">
+    <button class="back-btn" onclick="goHome()">← Retour</button>
+    <div class="game-title-bar">
+      <h2>🕰️ Défi des Temps</h2>
+      <div class="progress-wrap"><div class="progress-fill" id="td-progress"></div></div>
+    </div>
+    <div style="display:flex;gap:.8rem;align-items:center">
+      <div class="streak-display"><span class="streak-fire">🔥</span><span id="td-streak">0</span></div>
+      <div class="score-chip" id="td-score">0 pts</div>
+    </div>
+  </div>
+
+  <!-- Sélection du temps -->
+  <div id="td-setup" style="width:100%;max-width:660px;text-align:center">
+    <div style="font-size:.75rem;letter-spacing:.15em;text-transform:uppercase;color:var(--muted);margin-bottom:1rem">Choisis le(s) temps à pratiquer</div>
+    <div class="tense-selector" id="td-tense-selector">
+      <button class="tense-btn active" data-tense="présent">Présent</button>
+      <button class="tense-btn" data-tense="prétérit">Prétérit</button>
+      <button class="tense-btn" data-tense="imparfait">Imparfait</button>
+      <button class="tense-btn" data-tense="futur">Futur simple</button>
+      <button class="tense-btn" data-tense="conditionnel">Conditionnel</button>
+      <button class="tense-btn" data-tense="subjonctif présent">Subjonctif</button>
+      <button class="tense-btn" data-tense="mélange">🎲 Mélange</button>
+    </div>
+    <div style="display:flex;gap:1rem;align-items:center;justify-content:center;margin-bottom:1.2rem;flex-wrap:wrap">
+      <div style="font-size:.8rem;color:var(--muted)">Nombre de questions :</div>
+      <div style="display:flex;gap:.5rem">
+        <button class="tense-btn active" id="td-q5" onclick="setTDCount(5,this)">5</button>
+        <button class="tense-btn" id="td-q10" onclick="setTDCount(10,this)">10</button>
+        <button class="tense-btn" id="td-q15" onclick="setTDCount(15,this)">15</button>
+      </div>
+    </div>
+    <button class="btn btn-primary" style="font-size:1rem;padding:1rem 2.5rem" onclick="startTD()">✨ Générer les exercices</button>
+    <div id="td-preload-msg" style="margin-top:.8rem;font-size:.82rem;color:var(--muted)"></div>
+  </div>
+
+  <!-- Zone de jeu -->
+  <div id="td-game" style="display:none;width:100%;max-width:700px">
+
+    <!-- Carte question -->
+    <div class="main-card" id="td-card" style="margin-bottom:1.2rem">
+      <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:1rem;flex-wrap:wrap;gap:.5rem">
+        <div class="conj-tense-badge" id="td-tense-badge">Présent</div>
+        <div style="font-size:.75rem;color:var(--muted)" id="td-qcounter">1 / 5</div>
+      </div>
+
+      <!-- Phrase à trous -->
+      <div style="font-size:.78rem;letter-spacing:.12em;text-transform:uppercase;color:var(--muted);margin-bottom:.6rem">🇪🇸 Complète la phrase</div>
+      <div id="td-sentence" style="font-size:1.15rem;line-height:1.8;margin-bottom:.5rem;min-height:60px"></div>
+
+      <!-- Indices -->
+      <div id="td-clues" style="display:flex;flex-wrap:wrap;gap:.5rem;justify-content:center;margin-bottom:1rem"></div>
+
+      <!-- Traduction de la phrase -->
+      <div id="td-translation" style="font-size:.85rem;color:var(--muted);font-style:italic;margin-bottom:1.2rem;border-top:1px solid var(--border);padding-top:.8rem"></div>
+
+      <!-- Input réponse -->
+      <input type="text" class="type-input" id="td-input" placeholder="Écris la forme conjuguée…" autocomplete="off" spellcheck="false" style="margin-top:0">
+    </div>
+
+    <div class="btn-row" style="margin-top:0;margin-bottom:1rem">
+      <button class="btn btn-ghost" onclick="tdSkip()">⏭ Passer</button>
+      <button class="btn btn-primary" onclick="tdCheck()">Valider ↵</button>
+    </div>
+
+    <!-- Feedback IA -->
+    <div id="td-feedback" style="width:100%"></div>
+  </div>
+
+  <!-- Chargement -->
+  <div id="td-loading" style="display:none;text-align:center">
+    <div class="ai-loading" style="justify-content:center;margin-bottom:.8rem">
+      <span class="dot"></span><span class="dot"></span><span class="dot"></span>
+    </div>
+    <div style="color:var(--muted);font-size:.9rem" id="td-loading-msg">Claude prépare tes exercices…</div>
+  </div>
+</div>
+
+<!-- ═══════════ QCM CONJUGAISON ═══════════ -->
+<div class="screen" id="screen-conjqcm">
+  <div class="game-header">
+    <button class="back-btn" onclick="goHome()">← Retour</button>
+    <div class="game-title-bar">
+      <h2>📋 QCM Conjugaison</h2>
+      <div class="progress-wrap"><div class="progress-fill" id="cq-progress"></div></div>
+    </div>
+    <div style="display:flex;gap:.8rem;align-items:center">
+      <div class="streak-display"><span class="streak-fire">🔥</span><span id="cq-streak">0</span></div>
+      <div class="score-chip" id="cq-score">0 pts</div>
+    </div>
+  </div>
+  <div id="cq-setup" style="width:100%;max-width:660px;text-align:center">
+    <div style="font-size:.75rem;letter-spacing:.15em;text-transform:uppercase;color:var(--muted);margin-bottom:1rem">Temps à inclure</div>
+    <div class="tense-selector" id="cq-tense-sel">
+      <button class="tense-btn active" data-t="presente">Présent</button>
+      <button class="tense-btn active" data-t="preterito">Prétérit</button>
+      <button class="tense-btn active" data-t="imperfecto">Imparfait</button>
+      <button class="tense-btn active" data-t="futuro">Futur</button>
+      <button class="tense-btn active" data-t="condicional">Conditionnel</button>
+      <button class="tense-btn active" data-t="subjuntivo">Subjonctif</button>
+    </div>
+    <div style="display:flex;gap:1rem;align-items:center;justify-content:center;margin:1rem 0;flex-wrap:wrap">
+      <span style="font-size:.8rem;color:var(--muted)">Questions :</span>
+      <div style="display:flex;gap:.5rem">
+        <button class="tense-btn active" id="cq-q10" onclick="setCQCount(10,this)">10</button>
+        <button class="tense-btn" id="cq-q20" onclick="setCQCount(20,this)">20</button>
+        <button class="tense-btn" id="cq-q30" onclick="setCQCount(30,this)">30</button>
+      </div>
+    </div>
+    <button class="btn btn-primary" style="padding:1rem 2.5rem" onclick="startCQ()">Commencer</button>
+  </div>
+  <div id="cq-game" style="display:none;width:100%;max-width:700px">
+    <div class="main-card" style="margin-bottom:1.2rem">
+      <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:.8rem;flex-wrap:wrap;gap:.5rem">
+        <div class="conj-tense-badge" id="cq-tense-badge">Présent</div>
+        <div style="font-size:.75rem;color:var(--muted)" id="cq-counter">1/10</div>
+      </div>
+      <div style="font-size:.72rem;letter-spacing:.12em;text-transform:uppercase;color:var(--muted);margin-bottom:.5rem">Conjugue :</div>
+      <div style="font-family:'Unbounded',sans-serif;font-size:1.8rem;font-weight:900;margin-bottom:.3rem" id="cq-verb">—</div>
+      <div style="color:var(--muted);font-size:.9rem;margin-bottom:.2rem" id="cq-verbfr">—</div>
+      <div style="display:flex;gap:.6rem;justify-content:center;margin-top:.8rem">
+        <span class="pronoun-tag" style="color:var(--text);font-size:.95rem" id="cq-pronoun">yo</span>
+      </div>
+    </div>
+    <div class="options-grid" id="cq-options"></div>
+    <div id="cq-explain" style="margin-top:1rem"></div>
+  </div>
+</div>
+
+<!-- ═══════════ TABLEAU À COMPLÉTER ═══════════ -->
+<div class="screen" id="screen-conjfill">
+  <div class="game-header">
+    <button class="back-btn" onclick="goHome()">← Retour</button>
+    <div class="game-title-bar"><h2>✍️ Tableau à compléter</h2></div>
+    <div class="score-chip" id="cf-score">0 pts</div>
+  </div>
+  <div id="cf-setup" style="width:100%;max-width:660px;text-align:center">
+    <div style="font-size:.75rem;letter-spacing:.15em;text-transform:uppercase;color:var(--muted);margin-bottom:1rem">Temps</div>
+    <div class="tense-selector" id="cf-tense-sel">
+      <button class="tense-btn active" data-t="presente">Présent</button>
+      <button class="tense-btn" data-t="preterito">Prétérit</button>
+      <button class="tense-btn" data-t="imperfecto">Imparfait</button>
+      <button class="tense-btn" data-t="futuro">Futur</button>
+      <button class="tense-btn" data-t="condicional">Conditionnel</button>
+      <button class="tense-btn" data-t="subjuntivo">Subjonctif</button>
+    </div>
+    <div style="margin:1.2rem 0;font-size:.8rem;color:var(--muted)">Un seul temps actif à la fois — clique pour choisir</div>
+    <button class="btn btn-primary" style="padding:1rem 2.5rem" onclick="startCF()">Commencer</button>
+  </div>
+  <div id="cf-game" style="display:none;width:100%;max-width:640px">
+    <div class="main-card">
+      <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:1rem;flex-wrap:wrap;gap:.5rem">
+        <div class="conj-tense-badge" id="cf-tense-badge">Présent</div>
+        <div style="font-size:.75rem;color:var(--muted)" id="cf-counter">1 / ?</div>
+      </div>
+      <div style="font-family:'Unbounded',sans-serif;font-size:1.6rem;font-weight:900;margin-bottom:.2rem" id="cf-verb">—</div>
+      <div style="color:var(--muted);font-size:.85rem;margin-bottom:1.2rem" id="cf-verbfr">—</div>
+      <table class="conj-table" id="cf-table">
+        <thead><tr><th>Pronom</th><th>Forme</th><th></th></tr></thead>
+        <tbody id="cf-tbody"></tbody>
+      </table>
+      <div id="cf-result" style="margin-top:.8rem;font-size:.9rem"></div>
+    </div>
+    <div class="btn-row">
+      <button class="btn btn-secondary" onclick="cfSkip()">⏭ Suivant</button>
+      <button class="btn btn-primary" onclick="cfCheck()">Vérifier</button>
+    </div>
+    <div id="cf-tip" style="margin-top:.8rem;width:100%"></div>
+  </div>
+</div>
+
+<!-- ═══════════ ENTRAÎNEUR CONJUGAISON ═══════════ -->
+<div class="screen" id="screen-conjtrainer">
+  <div class="ls-top" id="ct-top">
+    <button class="ls-x" onclick="ctQuit()" title="Quitter">✕</button>
+    <div class="ls-bar"><i id="ct-fill"></i></div>
+    <div class="ls-hp" id="ct-streak-disp">🔥 <span id="ct-streak-n">0</span></div>
+  </div>
+  <div class="ls-body" id="ct-body"></div>
+  <div class="ls-foot" id="ct-foot">
+    <div class="ls-fb" id="ct-fb"></div>
+    <button class="gbtn" id="ct-btn" onclick="ctAction()">Vérifier</button>
+  </div>
+</div>
+
+<!-- ═══════════ PALETTE SYNESTHÉSIQUE ═══════════ -->
+<div class="screen" id="screen-palette">
+  <div class="game-header">
+    <button class="back-btn" onclick="goHome()">← Retour</button>
+    <div class="game-title-bar">
+      <h2>🎨 Palette Synesthésique</h2>
+      <div class="progress-wrap"><div class="progress-fill" id="pal-progress"></div></div>
+    </div>
+    <div class="score-chip" id="pal-score">0 pts</div>
+  </div>
+  <div id="pal-setup" style="width:100%;max-width:660px;text-align:center">
+    <div style="font-size:.85rem;color:var(--muted);margin-bottom:1.5rem;line-height:1.6">
+      Chaque mot reçoit une couleur selon sa sonorité.<br>Mémorise la couleur, puis retrouve le mot.
+    </div>
+    <div style="display:flex;gap:.5rem;justify-content:center;margin-bottom:1.5rem;flex-wrap:wrap">
+      <button class="tense-btn active" id="pal-m5" onclick="setPalCount(5,this)">5 mots</button>
+      <button class="tense-btn" id="pal-m10" onclick="setPalCount(10,this)">10 mots</button>
+      <button class="tense-btn" id="pal-m15" onclick="setPalCount(15,this)">15 mots</button>
+    </div>
+    <button class="btn btn-primary" style="padding:1rem 2.5rem" onclick="startPalette()">Commencer</button>
+  </div>
+  <div id="pal-memorize" style="display:none;width:100%;max-width:700px;text-align:center">
+    <div style="font-size:.75rem;letter-spacing:.15em;text-transform:uppercase;color:var(--muted);margin-bottom:1rem">Phase 1 — Mémorise les associations couleur↔mot</div>
+    <div id="pal-cards-grid" style="display:grid;grid-template-columns:repeat(auto-fill,minmax(140px,1fr));gap:.8rem;margin-bottom:1.5rem"></div>
+    <button class="btn btn-primary" onclick="startPaletteQuiz()">Je suis prêt → Tester</button>
+  </div>
+  <div id="pal-quiz" style="display:none;width:100%;max-width:700px;text-align:center">
+    <div style="font-size:.75rem;letter-spacing:.15em;text-transform:uppercase;color:var(--muted);margin-bottom:1rem">Phase 2 — Quelle couleur pour ce mot ?</div>
+    <div class="main-card" style="margin-bottom:1.2rem">
+      <div class="question-word" id="pal-quiz-word">—</div>
+      <div style="font-size:.8rem;color:var(--muted);margin-top:.4rem" id="pal-quiz-fr">—</div>
+    </div>
+    <div id="pal-color-opts" style="display:flex;flex-wrap:wrap;gap:.8rem;justify-content:center"></div>
+    <div id="pal-feedback" style="margin-top:1rem;font-size:.9rem"></div>
+  </div>
+</div>
+
+<!-- ═══════════ MIND MAP ═══════════ -->
+<div class="screen" id="screen-mindmap">
+  <div class="game-header">
+    <button class="back-btn" onclick="goHome()">← Retour</button>
+    <div class="game-title-bar"><h2>🧠 Mind Map</h2></div>
+    <div style="font-size:.75rem;color:var(--muted)" id="mm-hint">Clique sur un nœud</div>
+  </div>
+  <div style="width:100%;max-width:900px;position:relative">
+    <div id="mm-legend" style="display:flex;flex-wrap:wrap;gap:.5rem;margin-bottom:1rem;justify-content:center"></div>
+    <div style="position:relative;width:100%;overflow:hidden;border-radius:14px;background:var(--surface);border:1px solid var(--border)">
+      <canvas id="mm-canvas" style="width:100%;display:block"></canvas>
+    </div>
+    <div id="mm-tooltip" style="display:none;position:fixed;background:var(--surface2);border:1.5px solid var(--border);border-radius:10px;padding:.8rem 1.2rem;font-size:.88rem;z-index:100;max-width:220px;pointer-events:none"></div>
+  </div>
+</div>
+
+<!-- ═══════════ STORY MODE ═══════════ -->
+<div class="screen" id="screen-story">
+  <div class="game-header">
+    <button class="back-btn" onclick="goHome()">← Retour</button>
+    <div class="game-title-bar"><h2>📖 Story Mode</h2></div>
+    <div class="score-chip" id="story-score">0 pts</div>
+  </div>
+  <div id="story-setup" style="width:100%;max-width:660px;text-align:center">
+    <div style="font-size:.85rem;color:var(--muted);margin-bottom:1.5rem;line-height:1.6">
+      Claude génère une mini histoire avec 5 mots de ton deck.<br>Lis, visualise, puis retrouve les mots cachés.
+    </div>
+    <button class="btn btn-primary" style="padding:1rem 2.5rem;font-size:1rem" onclick="generateStory()">✨ Générer une histoire</button>
+    <div id="story-loading" style="display:none;margin-top:1.5rem">
+      <div class="ai-loading" style="justify-content:center"><span class="dot"></span><span class="dot"></span><span class="dot"></span></div>
+      <div style="color:var(--muted);font-size:.85rem;margin-top:.6rem">Claude écrit l'histoire…</div>
+    </div>
+  </div>
+  <div id="story-read" style="display:none;width:100%;max-width:700px">
+    <div style="font-size:.72rem;letter-spacing:.12em;text-transform:uppercase;color:var(--muted);margin-bottom:.8rem">Phase 1 — Lis et visualise</div>
+    <div class="lesson-card" style="font-size:1rem;line-height:1.8" id="story-text"></div>
+    <div style="display:flex;flex-wrap:wrap;gap:.5rem;margin-top:1rem;justify-content:center" id="story-words-display"></div>
+    <div class="btn-row"><button class="btn btn-primary" onclick="startStoryQuiz()">Tester ma mémoire →</button></div>
+  </div>
+  <div id="story-quiz" style="display:none;width:100%;max-width:700px">
+    <div style="font-size:.72rem;letter-spacing:.12em;text-transform:uppercase;color:var(--muted);margin-bottom:.8rem">Phase 2 — Retrouve les 5 mots de l'histoire</div>
+    <div class="lesson-card" id="story-quiz-text" style="font-size:1rem;line-height:2;margin-bottom:1rem"></div>
+    <div id="story-inputs" style="display:grid;gap:.6rem"></div>
+    <div class="btn-row">
+      <button class="btn btn-primary" onclick="checkStory()">Vérifier</button>
+    </div>
+    <div id="story-result" style="margin-top:1rem;text-align:center"></div>
+  </div>
+</div>
+
+<!-- ═══════════ LETTRES COLORÉES ═══════════ -->
+<div class="screen" id="screen-colorletters">
+  <div class="game-header">
+    <button class="back-btn" onclick="goHome()">← Retour</button>
+    <div class="game-title-bar">
+      <h2>🌈 Lettres Colorées</h2>
+      <div class="progress-wrap"><div class="progress-fill" id="cl-progress"></div></div>
+    </div>
+    <div class="score-chip" id="cl-score">0 pts</div>
+  </div>
+  <div id="cl-setup" style="width:100%;max-width:660px;text-align:center">
+    <div style="font-size:.85rem;color:var(--muted);margin-bottom:1.2rem;line-height:1.6">Chaque lettre a une couleur fixe. Ton cerveau synesthésique crée une empreinte visuelle unique pour chaque mot.</div>
+    <div id="cl-alphabet-preview" style="display:flex;flex-wrap:wrap;gap:.3rem;justify-content:center;margin-bottom:1.5rem;max-width:500px;margin-left:auto;margin-right:auto"></div>
+    <button class="btn btn-primary" style="padding:1rem 2.5rem" onclick="startColorLetters()">Commencer</button>
+  </div>
+  <div id="cl-game" style="display:none;width:100%;max-width:700px;text-align:center">
+    <div class="main-card" style="margin-bottom:1.2rem">
+      <div style="font-size:.72rem;letter-spacing:.12em;text-transform:uppercase;color:var(--muted);margin-bottom:.8rem">🇪🇸 Mémorise ce mot</div>
+      <div id="cl-word-colored" style="font-family:'Unbounded',sans-serif;font-size:clamp(2rem,6vw,3.5rem);font-weight:900;letter-spacing:.05em;margin-bottom:.5rem;line-height:1.2"></div>
+      <div style="color:var(--muted);font-size:.9rem" id="cl-word-fr">—</div>
+    </div>
+    <div id="cl-options-area" style="margin-bottom:1rem"></div>
+    <div class="options-grid" id="cl-options" style="display:none"></div>
+    <div id="cl-feedback" style="margin-top:.8rem;font-size:.9rem"></div>
+  </div>
+</div>
+
+<!-- ═══════════ AURA PERSONNALISÉE ═══════════ -->
+<div class="screen" id="screen-aura">
+  <div class="game-header">
+    <button class="back-btn" onclick="goHome()">← Retour</button>
+    <div class="game-title-bar">
+      <h2>✨ Aura Personnalisée</h2>
+      <div class="progress-wrap"><div class="progress-fill" id="aura-progress"></div></div>
+    </div>
+    <div class="score-chip" id="aura-score">0 pts</div>
+  </div>
+  <div id="aura-assign" style="display:none;width:100%;max-width:700px;text-align:center">
+    <div style="font-size:.72rem;letter-spacing:.12em;text-transform:uppercase;color:var(--muted);margin-bottom:.8rem">Phase 1 — Choisis la couleur de ce mot</div>
+    <div class="main-card" style="margin-bottom:1.5rem">
+      <div class="question-word" id="aura-word">—</div>
+      <div style="color:var(--muted);font-size:.9rem;margin-top:.3rem" id="aura-fr">—</div>
+    </div>
+    <div id="aura-picker" style="display:flex;flex-wrap:wrap;gap:.7rem;justify-content:center;margin-bottom:1.2rem"></div>
+    <div id="aura-custom" style="margin-bottom:1rem">
+      <input type="color" id="aura-color-input" style="width:50px;height:40px;border:none;background:none;cursor:pointer;border-radius:8px">
+      <span style="font-size:.8rem;color:var(--muted);margin-left:.5rem">Couleur personnalisée</span>
+    </div>
+    <button class="btn btn-primary" id="aura-confirm-btn" onclick="confirmAura()">Confirmer cette couleur →</button>
+    <div style="margin-top:.6rem;font-size:.75rem;color:var(--muted)" id="aura-counter-lbl">—</div>
+  </div>
+  <div id="aura-quiz-area" style="display:none;width:100%;max-width:700px;text-align:center">
+    <div style="font-size:.72rem;letter-spacing:.12em;text-transform:uppercase;color:var(--muted);margin-bottom:.8rem">Phase 2 — Retrouve ta couleur pour ce mot</div>
+    <div class="main-card" style="margin-bottom:1.2rem">
+      <div class="question-word" id="aura-quiz-word">—</div>
+      <div style="color:var(--muted);font-size:.9rem;margin-top:.3rem" id="aura-quiz-fr">—</div>
+    </div>
+    <div id="aura-quiz-opts" style="display:flex;flex-wrap:wrap;gap:.8rem;justify-content:center"></div>
+    <div id="aura-quiz-fb" style="margin-top:1rem;font-size:.9rem"></div>
+  </div>
+  <div id="aura-setup" style="width:100%;max-width:660px;text-align:center">
+    <div style="font-size:.85rem;color:var(--muted);margin-bottom:1.5rem;line-height:1.6">
+      Assigne une couleur à chaque mot — tes associations sont sauvegardées entre les sessions.
+    </div>
+    <div id="aura-saved-count" style="margin-bottom:1rem;font-size:.85rem;color:var(--accent2)"></div>
+    <div class="btn-row">
+      <button class="btn btn-primary" onclick="startAuraAssign()">🎨 Assigner des couleurs</button>
+      <button class="btn btn-secondary" id="aura-quiz-start-btn" onclick="startAuraQuiz()" style="display:none">🧪 Tester mes auras</button>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════ IMAGE MENTALE ═══════════ -->
+<div class="screen" id="screen-imagementale">
+  <div class="game-header">
+    <button class="back-btn" onclick="goHome()">← Retour</button>
+    <div class="game-title-bar">
+      <h2>🖼️ Image Mentale</h2>
+      <div class="progress-wrap"><div class="progress-fill" id="im-progress"></div></div>
+    </div>
+    <div class="score-chip" id="im-score">0 pts</div>
+  </div>
+  <div id="im-game" style="width:100%;max-width:700px">
+    <div class="main-card" style="margin-bottom:1rem">
+      <div style="font-size:.72rem;letter-spacing:.12em;text-transform:uppercase;color:var(--muted);margin-bottom:.6rem">🇪🇸 Mot espagnol</div>
+      <div class="question-word" id="im-word" style="font-size:clamp(2rem,5vw,3rem)">—</div>
+      <div style="color:var(--muted);font-style:italic;font-size:.85rem;margin-top:.3rem" id="im-hint">Génère une image mentale…</div>
+    </div>
+    <div style="font-size:.8rem;color:var(--muted);margin-bottom:.5rem">Décris ton image mentale en 3 mots (français) :</div>
+    <input type="text" class="type-input" id="im-input" placeholder="ex: feu, rouge, vif…" autocomplete="off" style="margin-bottom:.8rem">
+    <button class="btn btn-primary" style="width:100%" id="im-generate-btn" onclick="generateMnemonic()">✨ Générer la mnémotechnique</button>
+    <div id="im-ai-result" style="margin-top:1rem"></div>
+    <div id="im-next-area" style="display:none;margin-top:1rem">
+      <div style="color:var(--muted);font-size:.8rem;margin-bottom:.8rem">Tu te souviens de la traduction ?</div>
+      <div class="options-grid" id="im-translation-opts"></div>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════ CALENDRIER DES MOTS ═══════════ -->
+<div class="screen lesson-screen" id="screen-calendrier">
+  <div class="game-header" style="max-width:900px">
+    <button class="back-btn" onclick="goHome()">← Retour</button>
+    <div class="game-title-bar"><h2>🗓️ Calendrier des Mots</h2></div>
+    <div style="font-size:.75rem;color:var(--muted)" id="cal-total">0 mots</div>
+  </div>
+  <div style="width:100%;max-width:900px">
+    <div id="cal-nav" style="display:flex;align-items:center;gap:1rem;justify-content:center;margin-bottom:1.5rem">
+      <button class="btn btn-ghost" onclick="calNav(-1)">←</button>
+      <div style="font-family:'Unbounded',sans-serif;font-size:.95rem;min-width:140px;text-align:center" id="cal-month-label">Mai 2026</div>
+      <button class="btn btn-ghost" onclick="calNav(1)">→</button>
+    </div>
+    <div id="cal-grid" style="display:grid;grid-template-columns:repeat(7,1fr);gap:.3rem;margin-bottom:1.5rem"></div>
+    <div id="cal-day-detail" style="display:none" class="lesson-card">
+      <div style="font-family:'Unbounded',sans-serif;font-size:.85rem;color:var(--accent2);margin-bottom:.8rem" id="cal-day-title"></div>
+      <div id="cal-day-words" style="display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:.4rem"></div>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════ RESULTS ═══════════ -->
+<div class="screen" id="screen-results">
+  <div style="text-align:center;margin-bottom:1.5rem">
+    <div class="home-title" style="font-size:2.5rem" id="result-emoji">🎉</div>
+    <div style="font-family:'Unbounded',sans-serif;font-size:1.1rem;margin-top:.5rem" id="result-title">Résultats</div>
+  </div>
+  <div style="display:flex;gap:1.5rem;flex-wrap:wrap;justify-content:center;margin-bottom:2rem">
+    <div class="result-ring" id="result-ring" style="--pct:0%">
+      <div class="result-ring-inner">
+        <div style="font-size:1.6rem" id="result-pct">0%</div>
+        <div class="result-label">Score</div>
+      </div>
+    </div>
+    <div style="display:flex;flex-direction:column;justify-content:center;gap:.8rem">
+      <div><span style="color:var(--muted);font-size:.8rem">Bonnes réponses</span><br><span style="font-family:'Unbounded',sans-serif;color:var(--success)" id="res-correct">0</span></div>
+      <div><span style="color:var(--muted);font-size:.8rem">Erreurs</span><br><span style="font-family:'Unbounded',sans-serif;color:var(--error)" id="res-wrong">0</span></div>
+      <div><span style="color:var(--muted);font-size:.8rem">XP gagnés</span><br><span style="font-family:'Unbounded',sans-serif;color:var(--accent2)" id="res-xp">+0</span></div>
+    </div>
+  </div>
+  <div id="mistakes-section" style="width:100%;max-width:600px;margin-bottom:1.5rem;display:none">
+    <div style="font-size:.75rem;letter-spacing:.12em;color:var(--muted);text-transform:uppercase;margin-bottom:.5rem">Mots à retravailler</div>
+    <div class="mistakes-list" id="mistakes-list"></div>
+  </div>
+  <div class="btn-row">
+    <button class="btn btn-secondary" onclick="goHome()">🏠 Accueil</button>
+    <button class="btn btn-primary" id="result-replay-btn">🔄 Rejouer</button>
+  </div>
+</div>
+
+<!-- Notification toggle CSS -->
+
+<!-- Firebase SDK (compat mode — CDN) -->
+<script src="https://www.gstatic.com/firebasejs/10.14.1/firebase-app-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/10.14.1/firebase-auth-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/10.14.1/firebase-firestore-compat.js"></script>
+
+<!-- Sync layer (replaces localStorage with Firestore) -->
+<script src="sync.js"></script>
+
+<!-- Course data -->
+<script src="courses/es.js"></script>
+<script src="courses/ln.js"></script>
+<script src="courses/en.js"></script>
+<script src="courses/dz.js"></script>
+
+<!-- Main app (boots after auth) -->
+<script src="app.js"></script>
+</body>
+</html>
